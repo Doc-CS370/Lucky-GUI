@@ -11,24 +11,24 @@ public class PaintPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static String value[] = {"2","3","4","5","6","7","8","9","10"};
-	private static String p1[] = {"C:\\Users\\lpare\\Desktop\\Cards\\MurderCard" + value[0] +".png",
-									"C:\\Users\\lpare\\Desktop\\Cards\\MurderCard" + value[1] +".png",
-									"C:\\Users\\lpare\\Desktop\\Cards\\MurderCard" + value[2] +".png",
-									"C:\\Users\\lpare\\Desktop\\Cards\\MurderCard" + value[3] +".png"};
-	private static Image playerIcons[] = {new ImageIcon("C:\\Users\\lpare\\Desktop\\Player1 Chip.png").getImage(),
-											new ImageIcon("C:\\Users\\lpare\\Desktop\\Player2 Chip.png").getImage(),
-											new ImageIcon("C:\\Users\\lpare\\Desktop\\Player3 Chip.png").getImage(),
-											new ImageIcon("C:\\Users\\lpare\\Desktop\\Player4 Chip.png").getImage(),
-											new ImageIcon("C:\\Users\\lpare\\Desktop\\Player5 Chip.png").getImage(),
-											new ImageIcon("C:\\Users\\lpare\\Desktop\\Player 6 Chip.png").getImage(),
-											new ImageIcon("C:\\Users\\lpare\\Desktop\\Player 7 Chip.png").getImage(),
-											new ImageIcon("C:\\Users\\lpare\\Desktop\\Dr.Lucky Chip.png").getImage()};
+	private static String p1[] = {"./images/cards/MurderCard" + value[0] +".png",
+									"./images/cards/MurderCard" + value[1] +".png",
+									"./images/cards/MurderCard" + value[2] +".png",
+									"./images/cards/MurderCard" + value[3] +".png"};
+	private static Image playerIcons[] = {new ImageIcon("./images/Player1 Chip.png").getImage(),
+											new ImageIcon("./images/Player2 Chip.png").getImage(),
+											new ImageIcon("./images/Player3 Chip.png").getImage(),
+											new ImageIcon("./images/Player4 Chip.png").getImage(),
+											new ImageIcon("./images/Player5 Chip.png").getImage(),
+											new ImageIcon("./images/Player 6 Chip.png").getImage(),
+											new ImageIcon("./images/Player 7 Chip.png").getImage(),
+											new ImageIcon("./images/Dr.Lucky Chip.png").getImage()};
 	private static int ArrayCT[][] = {{1000,30},{1150,30},{1000,200},
 			{1150,200},{1000,370},{1150,370},{1330,200},
 			{1075,530}};
 	final private int pawnWidth = 50;
 	final private int pawnHeight = 50;
-	private Image backImg = new ImageIcon("C:\\Users\\lpare\\Desktop\\Map_with_special_rooms.png").getImage();
+	private Image backImg = new ImageIcon("./images/Map_with_special_rooms.jpg").getImage();
 	private static Image cardImg[] = {new ImageIcon(p1[0]).getImage(),
 										new ImageIcon(p1[1]).getImage(),
 										new ImageIcon(p1[2]).getImage(),
