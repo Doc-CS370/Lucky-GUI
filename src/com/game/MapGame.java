@@ -1,5 +1,7 @@
 package com.game;
 
+import com.game.client.ChatRunnable;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -45,22 +47,31 @@ public class MapGame extends JFrame {
 		chatRoom.setVisible(true);
 		chatText.setBounds(1230, 580, 270, 30);
 		chatText.setVisible(true);
-		chatText.addActionListener(new ActionListener() {
+		/**
+		 * chatText.addActionListener(new ActionListener() {
+		 *
+		 *                        @Override
+		 *            public void actionPerformed(ActionEvent e) {
+		 * 				// TODO Auto-generated method stub
+		 * 				/**
+		 * 				 * String txt = chatText.getText();
+		 * 				 * 				chatRoom.append(txt + nL);
+		 * 				 * 				chatText.selectAll();
+		 * 				 *
+		 * 				 * 				chatRoom.setCaretPosition(chatRoom.getDocument().getLength());
+		 *
+		 *
+		 *
+		 *
+		 *
+		 * 			}
+		 *
+		 */
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				String txt = chatText.getText();
-				chatRoom.append(txt + nL);
-				chatText.selectAll();
-				
-				chatRoom.setCaretPosition(chatRoom.getDocument().getLength());
-				
-				
-				
-			}
-			
-		});
+
+		ChatRunnable chatRunnable = new ChatRunnable(chatRoom);
+		Thread chat = new Thread(chatRunnable);
+		chat.start();
 		move.setBounds(970,660,110,50);
 		draw.setBounds(1100,720,110,50);
 		kill.setBounds(1100,660,110,50);
