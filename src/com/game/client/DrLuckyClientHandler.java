@@ -7,7 +7,10 @@ public class DrLuckyClientHandler extends SimpleChannelInboundHandler<String> {
     @Override
     public void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
         //Just reading responses from the server.
+
         DrLuckyClient.chatRoom.append(msg);
+        DrLuckyClient.chatRoom.append("\n");
+        DrLuckyClient.chatRoom.setCaretPosition(DrLuckyClient.chatRoom.getDocument().getLength());
     }
 
     @Override

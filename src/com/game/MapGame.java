@@ -1,11 +1,13 @@
 package com.game;
 
 import com.game.client.ChatRunnable;
+import com.game.client.DrLuckyClient;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeListener;
 
 
 public class MapGame extends JFrame {
@@ -68,6 +70,15 @@ public class MapGame extends JFrame {
 		 *
 		 */
 
+		chatText.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent actionEvent) {
+				DrLuckyClient.currentMessage = chatText.getText();
+				chatRoom.setCaretPosition(chatRoom.getDocument().getLength());
+				chatText.setText("");
+			}
+		});
+		//chatText.addActionListener(actionEvent -> );
 
 		ChatRunnable chatRunnable = new ChatRunnable(chatRoom);
 		Thread chat = new Thread(chatRunnable);

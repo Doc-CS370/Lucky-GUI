@@ -20,6 +20,8 @@ public class DrLuckyClient {
     static final String HOST = "127.0.0.1";
     static final int PORT = 9000;
 
+    public static String currentMessage = null;
+
     static JTextArea chatRoom;
 
     public static void start(JTextArea chatRoom) throws Exception {
@@ -41,14 +43,15 @@ public class DrLuckyClient {
             ChannelFuture lastWriteFuture = null;
             BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
             for (;;) {
-                String line = in.readLine();
-                if (line == null) {
+                System.out.println(DrLuckyClient.currentMessage);
+                if(DrLuckyClient.currentMessage != null && DrLuckyClient.currentMessage.equalsIgnoreCase("bye")){
                     break;
                 }
-
-                // Sends the received line to the server.
-                lastWriteFuture = ch.writeAndFlush(line + "\r\n");
-
+                if (DrLuckyClient.currentMessage != null) { //If a message is sent
+                    System.out.println(DrLuckyClient.currentMessage);
+                    lastWriteFuture = ch.writeAndFlush(DrLuckyClient.currentMessage + "\r\n");
+                    DrLuckyClient.currentMessage = null;
+                }
             }
 
             // Wait until all messages are flushed before closing the channel.
