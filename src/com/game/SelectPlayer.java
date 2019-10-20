@@ -1,11 +1,15 @@
 package com.game;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SelectPlayer extends JFrame {
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class SelectPlayer extends JFrame{
 	/**
 	 * 
 	 */
@@ -19,7 +23,7 @@ public class SelectPlayer extends JFrame {
 		playerNum = new JPanel();
 		playerNum.setLayout(null);
 		pn.setBounds(30, 30, 140, 50);
-		pn.setFont(new Font("ArialBlack", Font.ITALIC,15));
+		pn.setFont(new Font("ArialBlack",Font.ITALIC,15));
 		
 		aOP.setBounds(50, 70, 80, 30);
 		

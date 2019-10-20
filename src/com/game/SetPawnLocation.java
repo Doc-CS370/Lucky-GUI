@@ -181,7 +181,7 @@ public class SetPawnLocation {
 			yp = y1;
 			break;
 		case 12:
-			xmax = 715;
+			xmax = 715;//x>485 && x<725
 			xmin = 500;
 			xrange = xmax - xmin + 1;
 			x1 = (int)(Math.random() * xrange) + xmin;
@@ -229,8 +229,8 @@ public class SetPawnLocation {
 			yp = y1;
 			break;
 		case 16:
-			xmax = 1000;
-			xmin = 995;
+			xmax = 725;
+			xmin = 485;
 			xrange = xmax -xmin+1;
 			x1 = (int)(Math.random() * xrange) + xmin;
 			xp = x1;

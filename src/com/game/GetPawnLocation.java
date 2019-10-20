@@ -1,5 +1,6 @@
 package com.game;
 
+
 public class GetPawnLocation {
 	protected static int roomNum = 0;
 	
@@ -40,7 +41,7 @@ public class GetPawnLocation {
 		else if(x>345 && x<435 && y>45 && y<90) {
 			roomNum = 11;
 		}
-		else if(x>500 && x<715 && y==50) {
+		else if(x>485 && x<725 && y<20 && y<72) {
 			roomNum = 12;
 		}
 		else if(x>785 && x<870 && y>45 && y<95) {
@@ -65,40 +66,51 @@ public class GetPawnLocation {
 		else if(x>520 && x<690 && y>455 && y<585) {
 			roomNum = 19;
 		}
-		else if(x>555 && x<660 && y==395) {
+		//Foyer
+		else if(x>555 && x<660 && y<425 && y>365) {
 			roomNum = 20;
 		}
+		//Wine Cellar
 		else if(x>270 && x<285 && y>315 && y<465) {
 			roomNum = 21;
 		}
-		else if(x>40 && x<230 && y>435 && y<510) {
+		//South West Hall(Next to Wine Cellar)
+		else if(x>35 && x<235 && y>435 && y<510) {
 			roomNum = 22;
 		}
-		
-		else if(x>40 && x<450 && y==280) {
+		//Mid West Hall(Left of Dining Hall)
+		else if(x>40 && x<450 &&  y<310 && y > 250) {
 			roomNum = 23;
 		}
+		//West South Staircase(Near Lancaster Room)
 		else if(x>30 && x<55 && y>165 && y<240) {
 			roomNum = 24;
 		}
-		else if(x>267 && x<285 && y>35 && y<135) {
+		//NorthWest Hall(Above Lancaster Room)
+		else if(x>265 && x<295 && y>35 && y<135) {
 			roomNum = 25;
 		}
-		else if(x>485 && x<725 && y==102) {
+		//Gallery
+		else if(x>485 && x<725 && y>72 && y<132) {
 			roomNum = 26;
 		}
+		//NorthEast Hall(Above Lilac Room)
 		else if(x>920 && x<940 && y>35 && y<125) {
 			roomNum = 27;
 		}
-		else if(x>1155 && x<1178 && y>170 && y<245) {
+		//Northeast Staircase(Right of Lilac Room)
+		else if(x>1150 && x<1183 && y>170 && y<245) {
 			roomNum = 28;
 		}
-		else if(x>800 && x<1175 && y==280) {
+		//Mid east hall
+		else if(x>800 && x<1175 && y<310 && y > 250) {
 			roomNum = 29;
 		}
+		//South east Hall
 		else if(x>915 && x<935 && x>320 && x<470) {
 			roomNum = 30;
 		}
+		//White Room
 		else if(x>845 && x<990 && x>430 && x<470) {
 			roomNum = 31;
 		}

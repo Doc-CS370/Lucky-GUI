@@ -1,15 +1,19 @@
 package com.game;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-public class MainMenu extends JFrame {
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class MainMenu extends JFrame{
 	/**
 	 * 
 	 */
@@ -24,7 +28,7 @@ public class MainMenu extends JFrame {
 	
 	MainMenu(){
 		mainMenu.setLayout(null);
-		mt.setFont(new Font("ComicSan", Font.BOLD,30));
+		mt.setFont(new Font("ComicSan",Font.BOLD,30));
 		strg.setBounds(250, 200, 100,50);
 		multp.setBounds(250,260,100,50);
 		opt.setBounds(250, 320, 100, 50);
@@ -55,8 +59,7 @@ public class MainMenu extends JFrame {
 			clip.open(sis);
 			clip.start();
 			clip.loop(Clip.LOOP_CONTINUOUSLY);
-			}catch(Exception e) {
-            System.out.println(e);};
+			}catch(Exception e) {System.out.println(e);};
 		add(mainMenu);
 		setSize(600,600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,7 +67,7 @@ public class MainMenu extends JFrame {
 		setVisible(true);
 	}
 	
-	public static void main(String[]args) {
+	public static void main(String []args) {
 		new MainMenu();
 	}
 }
