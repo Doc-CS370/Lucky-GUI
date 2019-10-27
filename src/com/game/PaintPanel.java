@@ -15,28 +15,36 @@ public class PaintPanel extends JPanel{
 	/**
 	 * 
 	 */
+	private static String fileLocat = "C:\\Users\\lpare\\Desktop\\";
+	private static String cardType[] = {"Cards\\Failure Cards (1-43)\\","Cards\\Weapon Cards (44-63)\\","Cards\\Move Cards (64-77)\\","Cards\\Room Cards (78-97)\\"};
 	private static final long serialVersionUID = 1L;
-	private static String value[] = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"};
-	private static String p1[] = {"C:\\Users\\lpare\\Desktop\\Cards\\MurderCard" + value[0] +".png",
-									"C:\\Users\\lpare\\Desktop\\Cards\\MurderCard" + value[1] +".png",
-									"C:\\Users\\lpare\\Desktop\\Cards\\MurderCard" + value[2] +".png",
-									"C:\\Users\\lpare\\Desktop\\Cards\\MurderCard" + value[3] +".png",
-									"C:\\Users\\lpare\\Desktop\\Cards\\MurderCard" + value[4] +".png",
-									"C:\\Users\\lpare\\Desktop\\Cards\\MurderCard" + value[5] +".png"};
-	private static Image playerIcons[] = {new ImageIcon("C:\\Users\\lpare\\Desktop\\Player1 Chip.png").getImage(),
-											new ImageIcon("C:\\Users\\lpare\\Desktop\\Player2 Chip.png").getImage(),
-											new ImageIcon("C:\\Users\\lpare\\Desktop\\Player3 Chip.png").getImage(),
-											new ImageIcon("C:\\Users\\lpare\\Desktop\\Player4 Chip.png").getImage(),
-											new ImageIcon("C:\\Users\\lpare\\Desktop\\Player5 Chip.png").getImage(),
-											new ImageIcon("C:\\Users\\lpare\\Desktop\\Player 6 Chip.png").getImage(),
-											new ImageIcon("C:\\Users\\lpare\\Desktop\\Player 7 Chip.png").getImage(),
-											new ImageIcon("C:\\Users\\lpare\\Desktop\\Dr.Lucky Chip.png").getImage()};
+	
+	
+	private static String p1value[] = {Integer.toString((int) (Math.random() * 43)+1),
+			Integer.toString((int) (Math.random() * 43) + 1),Integer.toString((int) (Math.random() * 43)+1),
+			Integer.toString((int) (Math.random() * 43) + 1),Integer.toString((int) (Math.random() * 43)+1),
+			Integer.toString((int) (Math.random() * 43)+1),Integer.toString((int) (Math.random() * 43)+1)};
+	private static String p2value[] = {Integer.toString((int) (Math.random() * 20)+44),
+			Integer.toString((int) (Math.random() * 20)+44),Integer.toString((int) (Math.random() * 20)+44),
+			Integer.toString((int) (Math.random() * 20)+44),Integer.toString((int) (Math.random() * 20)+44),
+			Integer.toString((int) (Math.random() * 20)+44),Integer.toString((int) (Math.random() * 20)+44)};
+	private static String p3value[] = {Integer.toString((int) (Math.random() * 14)+64),
+			Integer.toString((int) (Math.random() * 14)+64),Integer.toString((int) (Math.random() * 14)+64),
+			Integer.toString((int) (Math.random() * 20)+78),Integer.toString((int) (Math.random() * 20)+78),
+			Integer.toString((int) (Math.random() * 20)+78),Integer.toString((int) (Math.random() * 20)+78)};
+	private static String p1[] = {fileLocat+cardType[2] + p3value[0] +".png", fileLocat + cardType[2] + p3value[1] +".png",
+									fileLocat + cardType[2] + p3value[2] +".png",fileLocat + cardType[3] + p3value[3] +".png",
+									fileLocat + cardType[3] + p3value[4] +".png",fileLocat + cardType[3]+ p3value[5] +".png"};
+	private static Image playerIcons[] = {new ImageIcon(fileLocat + "Player1 Chip.png").getImage(),new ImageIcon(fileLocat + "Player2 Chip.png").getImage(),
+											new ImageIcon(fileLocat + "Player3 Chip.png").getImage(),new ImageIcon(fileLocat + "Player4 Chip.png").getImage(),
+											new ImageIcon(fileLocat + "Player5 Chip.png").getImage(),new ImageIcon(fileLocat + "Player6 Chip.png").getImage(),
+											new ImageIcon(fileLocat + "Player7 Chip.png").getImage(),new ImageIcon(fileLocat + "Dr.Lucky Chip.png").getImage()};
 	private static int ArrayCT[][] = {{1000,30},{1150,30},{1000,200},
 			{1150,200},{1000,370},{1150,370},{1330,200},
 			{1075,530}};
 	final private int pawnWidth = 35;
 	final private int pawnHeight = 35;
-	private Image backImg = new ImageIcon("C:\\Users\\lpare\\Desktop\\Map_with_special_rooms.png").getImage();
+	private Image backImg = new ImageIcon(fileLocat + "Map_with_special_rooms.png").getImage();
 	private static Image cardImg[] = {new ImageIcon(p1[0]).getImage(),
 										new ImageIcon(p1[1]).getImage(),
 										new ImageIcon(p1[2]).getImage(),
@@ -53,6 +61,9 @@ public class PaintPanel extends JPanel{
 	PaintPanel(){
 		setPlayerLoad();
 		setDoctorLoad();
+		MapGame.getChatRoom().append("Welcome to Doctor Lucky!" + MapGame.getNextLine());
+		MapGame.getChatRoom().append("Player 1, your turn." + MapGame.getNextLine());
+
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -90,6 +101,7 @@ public class PaintPanel extends JPanel{
 					public void mousePressed(MouseEvent e) {
 						// TODO Auto-generated method stub
 						if(clicks[0] == true) {
+							
 							ArrayCT[0][0] = e.getX() - 12;
 							ArrayCT[0][1]= e.getY() - 8;
 							GetPawnLocation.getXYCoordinates(ArrayCT[0][0],ArrayCT[0][1]);
@@ -98,6 +110,7 @@ public class PaintPanel extends JPanel{
 							clicks[0] = false;
 							System.out.println(pRoom[0]);
 							MapGame.getJButton().setEnabled(true);
+							MapGame.getChatRoom().append("Player 2, your turn." + MapGame.getNextLine());
 							
 						}
 						
@@ -142,8 +155,10 @@ public class PaintPanel extends JPanel{
 							GetPawnLocation.getXYCoordinates(ArrayCT[1][0],ArrayCT[1][1]);
 							pRoom[1] = GetPawnLocation.getRoom();
 							repaint();
+							
 							clicks[1] = false;
 							MapGame.getJButton().setEnabled(true);
+							MapGame.getChatRoom().append("Player 3, your turn." + MapGame.getNextLine());
 							
 						}
 						
@@ -189,21 +204,32 @@ public class PaintPanel extends JPanel{
 							ArrayCT[2][1]= e.getY() - 8;
 							GetPawnLocation.getXYCoordinates(ArrayCT[2][0],ArrayCT[2][1]);
 							pRoom[2] = GetPawnLocation.getRoom();
+						
+							
 							repaint();
 							clicks[2] = false;
 							MapGame.getJButton().setEnabled(true);
-							if(dRoom <=19) {
-								countClick=0;
-								dRoom++;
-								setDoctorLoad();
-								repaint();
-							}else {
-								countClick=0;
-								dRoom = 0;
-								setDoctorLoad();
-								repaint();
-							}
 							
+							if(playerNum==3) {
+								if(dRoom <=19) {
+									MapGame.getChatRoom().append("Doctor Lucky has moved" + MapGame.getNextLine());
+									MapGame.getChatRoom().append("Player 1, your turn." + MapGame.getNextLine());
+									countClick=0;
+									dRoom++;
+									setDoctorLoad();
+									repaint();
+								}else {
+									MapGame.getChatRoom().append("Doctor Lucky has moved" + MapGame.getNextLine());
+									MapGame.getChatRoom().append("Player 1, your turn." + MapGame.getNextLine());
+									countClick=0;
+									dRoom = 0;
+									setDoctorLoad();
+									repaint();
+								}
+							}
+							else {
+								MapGame.getChatRoom().append("Player 4, your turn." + MapGame.getNextLine());
+							}
 							
 						}
 						
@@ -235,23 +261,279 @@ public class PaintPanel extends JPanel{
 		//Player 4
 		if(playerNum >=4) {
 			g2d.drawImage(playerIcons[3],ArrayCT[3][0],ArrayCT[3][1], pawnWidth,pawnHeight,this);
+			this.addMouseListener(new MouseListener() {
+
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void mousePressed(MouseEvent e) {
+					// TODO Auto-generated method stub
+					if(clicks[3] == true) {
+						ArrayCT[3][0] = e.getX() - 12;
+						ArrayCT[3][1]= e.getY() - 8;
+						GetPawnLocation.getXYCoordinates(ArrayCT[3][0],ArrayCT[3][1]);
+						pRoom[3] = GetPawnLocation.getRoom();
+					
+						
+						repaint();
+						clicks[3] = false;
+						MapGame.getJButton().setEnabled(true);
+						if(playerNum==4) {
+							if(dRoom <=19) {
+								MapGame.getChatRoom().append("Doctor Lucky has moved" + MapGame.getNextLine());
+								MapGame.getChatRoom().append("Player 1, your turn." + MapGame.getNextLine());
+								countClick=0;
+								dRoom++;
+								setDoctorLoad();
+								repaint();
+							}else {
+								MapGame.getChatRoom().append("Doctor Lucky has moved" + MapGame.getNextLine());
+								MapGame.getChatRoom().append("Player 1, your turn." + MapGame.getNextLine());
+								countClick=0;
+								dRoom = 0;
+								setDoctorLoad();
+								repaint();
+							}
+							
+						}
+						else {
+							MapGame.getChatRoom().append("Player 5, your turn." + MapGame.getNextLine());
+						}
+						
+					}
+					
+				}
+
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+			});
 
 		}
 		//Player 5
 		if(playerNum >=5) {
 				
 			g2d.drawImage(playerIcons[4],ArrayCT[4][0],ArrayCT[4][1], pawnWidth,pawnHeight,this);
+			this.addMouseListener(new MouseListener() {
+
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void mousePressed(MouseEvent e) {
+					// TODO Auto-generated method stub
+					if(clicks[4] == true) {
+						ArrayCT[4][0] = e.getX() - 12;
+						ArrayCT[4][1]= e.getY() - 8;
+						GetPawnLocation.getXYCoordinates(ArrayCT[4][0],ArrayCT[4][1]);
+						pRoom[4] = GetPawnLocation.getRoom();
+					
+						
+						repaint();
+						clicks[4] = false;
+						MapGame.getJButton().setEnabled(true);
+						if(playerNum==5) {
+							if(dRoom <=19) {
+								MapGame.getChatRoom().append("Doctor Lucky has moved" + MapGame.getNextLine());
+								MapGame.getChatRoom().append("Player 1, your turn." + MapGame.getNextLine());
+								countClick=0;
+								dRoom++;
+								setDoctorLoad();
+								repaint();
+							}else {
+								MapGame.getChatRoom().append("Doctor Lucky has moved" + MapGame.getNextLine());
+								MapGame.getChatRoom().append("Player 1, your turn." + MapGame.getNextLine());
+								countClick=0;
+								dRoom = 0;
+								setDoctorLoad();
+								repaint();
+							}
+						}else {
+							MapGame.getChatRoom().append("Player 6, your turn." + MapGame.getNextLine());
+						}
+						
+					}
+					
+				}
+
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+			});
 
 		}
 		//Player 6
 		if(playerNum >=6) {
 			g2d.drawImage(playerIcons[5],ArrayCT[5][0],ArrayCT[5][1], pawnWidth,pawnHeight,this);
+			this.addMouseListener(new MouseListener() {
+
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void mousePressed(MouseEvent e) {
+					// TODO Auto-generated method stub
+					if(clicks[5] == true) {
+						ArrayCT[5][0] = e.getX() - 12;
+						ArrayCT[5][1]= e.getY() - 8;
+						GetPawnLocation.getXYCoordinates(ArrayCT[5][0],ArrayCT[5][1]);
+						pRoom[5] = GetPawnLocation.getRoom();
+					
+						
+						repaint();
+						clicks[5] = false;
+						MapGame.getJButton().setEnabled(true);
+						if(playerNum==6) {
+							if(dRoom <=19) {
+								MapGame.getChatRoom().append("Doctor Lucky has moved" + MapGame.getNextLine());
+								MapGame.getChatRoom().append("Player 1, your turn." + MapGame.getNextLine());
+								countClick=0;
+								dRoom++;
+								setDoctorLoad();
+								repaint();
+							}else {
+								MapGame.getChatRoom().append("Doctor Lucky has moved" + MapGame.getNextLine());
+								MapGame.getChatRoom().append("Player 1, your turn." + MapGame.getNextLine());
+								countClick=0;
+								dRoom = 0;
+								setDoctorLoad();
+								repaint();
+							}
+						}else {
+							MapGame.getChatRoom().append("Player 7d, your turn." + MapGame.getNextLine());
+						}
+						
+					}
+					
+				}
+
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+			});
 
 		}
 		//Player 7
 		if(playerNum >=7) {
 				
 			g2d.drawImage(playerIcons[6],ArrayCT[6][0],ArrayCT[6][1], pawnWidth,pawnHeight,this);
+			this.addMouseListener(new MouseListener() {
+
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void mousePressed(MouseEvent e) {
+					// TODO Auto-generated method stub
+					if(clicks[6] == true) {
+						ArrayCT[6][0] = e.getX() - 12;
+						ArrayCT[6][1]= e.getY() - 8;
+						GetPawnLocation.getXYCoordinates(ArrayCT[6][0],ArrayCT[6][1]);
+						pRoom[6] = GetPawnLocation.getRoom();
+					
+						
+						repaint();
+						clicks[6] = false;
+						MapGame.getJButton().setEnabled(true);
+						if(playerNum==7) {
+							if(dRoom <=19) {
+								MapGame.getChatRoom().append("Doctor Lucky has moved" + MapGame.getNextLine());
+								MapGame.getChatRoom().append("Player 1, your turn." + MapGame.getNextLine());
+								countClick=0;
+								dRoom++;
+								setDoctorLoad();
+								repaint();
+							}else {
+								MapGame.getChatRoom().append("Doctor Lucky has moved" + MapGame.getNextLine());
+								MapGame.getChatRoom().append("Player 1, your turn." + MapGame.getNextLine());
+								countClick=0;
+								dRoom = 0;
+								setDoctorLoad();
+								repaint();
+							}
+						}
+						
+					}
+					
+				}
+
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+			});
 
 		}
 		//Doctor Lucky
@@ -460,9 +742,29 @@ public class PaintPanel extends JPanel{
 		
 	}
 	
-	//The string value for number card
-	public static String getValue(int num) {
-		return value[num];
+	//The string value for Player 1 deck
+	public static String getP1Value(int num) {
+		return p1value[num];
+		
+	}
+	//The string value for Player 2 deck
+	public static String getP2Value(int num) {
+		return p2value[num];
+		
+	}
+	//The string value for Player 3 deck
+	public static String getP3Value(int num) {
+		return p3value[num];
+		
+	}
+	
+	public static String getCardValue(int num) {
+		return cardType[num];
+		
+	}
+	
+	public static String getFileLocat() {
+		return fileLocat;
 		
 	}
 	//The string for the image file location
@@ -470,6 +772,7 @@ public class PaintPanel extends JPanel{
 		return p1[num];
 		
 	}
+	
 	
 	//Sets the card file 
 	public static void setCardValue(int num, Image lol) {

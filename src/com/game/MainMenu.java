@@ -19,7 +19,7 @@ public class MainMenu extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private JPanel mainMenu = new JPanel();
+	private JPanel mainMenu = new JPanel(); //This main menu 
 	private JButton strg = new JButton("Start Game");
 	private JButton multp = new JButton("Multiplayer");
 	private JButton opt = new JButton("Options");
@@ -29,11 +29,15 @@ public class MainMenu extends JFrame{
 	MainMenu(){
 		mainMenu.setLayout(null);
 		mt.setFont(new Font("ComicSan",Font.BOLD,30));
+		
+		//Set bounds set coordinates
 		strg.setBounds(250, 200, 100,50);
 		multp.setBounds(250,260,100,50);
 		opt.setBounds(250, 320, 100, 50);
 		exit.setBounds(250, 380, 100, 50);
 		mt.setBounds(180, 100, 350, 100);
+		
+		//If Start Game button is pressed
 		strg.addActionListener(new ActionListener() {
 
 			@Override
@@ -67,7 +71,4 @@ public class MainMenu extends JFrame{
 		setVisible(true);
 	}
 	
-	public static void main(String []args) {
-		new MainMenu();
-	}
 }

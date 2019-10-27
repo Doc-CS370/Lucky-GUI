@@ -122,5 +122,11 @@ public class GetPawnLocation {
 		return roomNum;
 	}
 	
+	public static void checkIfPlayerIsInMapBounds(int x, int y) {
+		if(x<=10 && y<=10 && x >=1800 && y>= 590) {
+			MapGame.getChatRoom().append("You clicked out of the map bounds!" + "\n" + "Try again!");
+		}
+	}
+	
 	
 }

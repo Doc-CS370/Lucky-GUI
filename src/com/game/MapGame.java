@@ -23,8 +23,8 @@ public class MapGame extends JFrame{
 	private ImageIcon larr = new ImageIcon("C:\\Users\\lpare\\Desktop\\leftArrow.png");
 	private ImageIcon rarr = new ImageIcon("C:\\Users\\lpare\\Desktop\\rightArrow.png");
 	private boolean trueOrFalseClick[] = {false,false,false,false,false,false,false};
-	private int cardValue[] = {0,1,2,3,4,5,6,7,8,9,10,11};
-	
+	private int numberValue[] = {2,2,2,3,3,3};
+	private int cardValue[] = {0,1,2,3,4,5};
 	private static JButton move = new JButton("Move");
 	private JButton draw = new JButton("Draw A Card");
 	private JButton kill = new JButton("Kill");
@@ -35,7 +35,7 @@ public class MapGame extends JFrame{
 	private static JTextArea chatRoom = new JTextArea();
 	
 	private int cout = 0;
-	private String nL = "\n";
+	private static String nL = "\n";
 	private JPanel mapG = new PaintPanel();
 	private int countNum = 0;
 	
@@ -87,29 +87,36 @@ public class MapGame extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				if(cardValue[5]<6) {
 					cardValue[0] += 1;
 					cardValue[1] += 1;
 					cardValue[2] += 1;
 					cardValue[3] += 1;
 					cardValue[4] += 1;
 					cardValue[5] += 1;
-					PaintPanel.setArray(0,"C:\\Users\\lpare\\Desktop\\Cards\\MurderCard" + PaintPanel.getValue(cardValue[0]) +".png");
-					PaintPanel.setArray(1,"C:\\Users\\lpare\\Desktop\\Cards\\MurderCard" + PaintPanel.getValue(cardValue[1]) +".png");	
-					PaintPanel.setArray(2,"C:\\Users\\lpare\\Desktop\\Cards\\MurderCard" + PaintPanel.getValue(cardValue[2]) +".png");	
-					PaintPanel.setArray(3,"C:\\Users\\lpare\\Desktop\\Cards\\MurderCard" + PaintPanel.getValue(cardValue[3]) +".png");	
-					PaintPanel.setArray(4,"C:\\Users\\lpare\\Desktop\\Cards\\MurderCard" + PaintPanel.getValue(cardValue[4]) +".png");	
-					PaintPanel.setArray(5,"C:\\Users\\lpare\\Desktop\\Cards\\MurderCard" + PaintPanel.getValue(cardValue[5]) +".png");	
-
+					PaintPanel.setArray(0,PaintPanel.getFileLocat() + PaintPanel.getCardValue(numberValue[0]) + PaintPanel.getP1Value(cardValue[0]) +".png");
+					PaintPanel.setArray(1,PaintPanel.getFileLocat() + PaintPanel.getCardValue(numberValue[1]) + PaintPanel.getP1Value(cardValue[1]) +".png");	
+					PaintPanel.setArray(2,PaintPanel.getFileLocat() + PaintPanel.getCardValue(numberValue[2]) + PaintPanel.getP1Value(cardValue[2]) +".png");	
+					PaintPanel.setArray(3,PaintPanel.getFileLocat() + PaintPanel.getCardValue(numberValue[3]) + PaintPanel.getP1Value(cardValue[3]) +".png");	
+					PaintPanel.setArray(4,PaintPanel.getFileLocat() + PaintPanel.getCardValue(numberValue[4]) + PaintPanel.getP1Value(cardValue[4]) +".png");	
+					PaintPanel.setArray(5,PaintPanel.getFileLocat() + PaintPanel.getCardValue(numberValue[5]) + PaintPanel.getP1Value(cardValue[5]) +".png");	
+					
 					PaintPanel.setCardValue(0,new ImageIcon(PaintPanel.getImageValue(0)).getImage());
 					PaintPanel.setCardValue(1,new ImageIcon(PaintPanel.getImageValue(1)).getImage());
 					PaintPanel.setCardValue(2,new ImageIcon(PaintPanel.getImageValue(2)).getImage());
 					PaintPanel.setCardValue(3,new ImageIcon(PaintPanel.getImageValue(3)).getImage());
 					PaintPanel.setCardValue(4,new ImageIcon(PaintPanel.getImageValue(4)).getImage());
 					PaintPanel.setCardValue(5,new ImageIcon(PaintPanel.getImageValue(5)).getImage());
+					
 					repaint();
+					numberValue[0] = numberValue[1];
+					numberValue[1] = numberValue[2];
+					numberValue[2] = numberValue[3];
+					numberValue[3] = numberValue[4];
+					numberValue[4] = numberValue[5];
+					numberValue[5] = numberValue[0];
 				
-				
+				}	
 			}
 			
 		});
@@ -118,19 +125,19 @@ public class MapGame extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				if(cardValue[0] >0) {
 					cardValue[0] -= 1;
 					cardValue[1] -= 1;
 					cardValue[2] -= 1;
 					cardValue[3] -= 1;
 					cardValue[4] -= 1;
 					cardValue[5] -= 1;
-					PaintPanel.setArray(0,"C:\\Users\\lpare\\Desktop\\Cards\\MurderCard" + PaintPanel.getValue(cardValue[0]) +".png");
-					PaintPanel.setArray(1,"C:\\Users\\lpare\\Desktop\\Cards\\MurderCard" + PaintPanel.getValue(cardValue[1]) +".png");	
-					PaintPanel.setArray(2,"C:\\Users\\lpare\\Desktop\\Cards\\MurderCard" + PaintPanel.getValue(cardValue[2]) +".png");	
-					PaintPanel.setArray(3,"C:\\Users\\lpare\\Desktop\\Cards\\MurderCard" + PaintPanel.getValue(cardValue[3]) +".png");	
-					PaintPanel.setArray(4,"C:\\Users\\lpare\\Desktop\\Cards\\MurderCard" + PaintPanel.getValue(cardValue[4]) +".png");
-					PaintPanel.setArray(5,"C:\\Users\\lpare\\Desktop\\Cards\\MurderCard" + PaintPanel.getValue(cardValue[5]) +".png");
+					PaintPanel.setArray(0,PaintPanel.getFileLocat() + PaintPanel.getCardValue(numberValue[0]) + PaintPanel.getP1Value(cardValue[0]) +".png");
+					PaintPanel.setArray(1,PaintPanel.getFileLocat() + PaintPanel.getCardValue(numberValue[0]) + PaintPanel.getP1Value(cardValue[1]) +".png");	
+					PaintPanel.setArray(2,PaintPanel.getFileLocat() + PaintPanel.getCardValue(numberValue[0]) + PaintPanel.getP1Value(cardValue[2]) +".png");	
+					PaintPanel.setArray(3,PaintPanel.getFileLocat() + PaintPanel.getCardValue(numberValue[1]) + PaintPanel.getP1Value(cardValue[3]) +".png");	
+					PaintPanel.setArray(4,PaintPanel.getFileLocat() + PaintPanel.getCardValue(numberValue[1]) + PaintPanel.getP1Value(cardValue[4]) +".png");
+					PaintPanel.setArray(5,PaintPanel.getFileLocat() + PaintPanel.getCardValue(numberValue[1]) + PaintPanel.getP1Value(cardValue[5]) +".png");
 					
 					PaintPanel.setCardValue(0,new ImageIcon(PaintPanel.getImageValue(0)).getImage());
 					PaintPanel.setCardValue(1,new ImageIcon(PaintPanel.getImageValue(1)).getImage());
@@ -139,7 +146,7 @@ public class MapGame extends JFrame{
 					PaintPanel.setCardValue(4,new ImageIcon(PaintPanel.getImageValue(4)).getImage());
 					PaintPanel.setCardValue(5,new ImageIcon(PaintPanel.getImageValue(5)).getImage());
 					repaint();
-					
+				}
 				
 			}
 			
@@ -149,7 +156,7 @@ public class MapGame extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if(cout<3) {
+				if(cout<PaintPanel.playerNum) {
 					PaintPanel.setCountClick(countNum);
 					trueOrFalseClick[cout] = true;
 					PaintPanel.setBoolArrayStart(trueOrFalseClick);
@@ -194,6 +201,10 @@ public class MapGame extends JFrame{
 	
 	public static JTextArea getChatRoom() {
 		return chatRoom;
+	}
+	
+	public static String getNextLine() {
+		return nL;
 	}
 	
 	public static JButton getJButton() {
