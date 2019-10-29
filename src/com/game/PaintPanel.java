@@ -1,12 +1,11 @@
 package com.game;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -18,8 +17,6 @@ public class PaintPanel extends JPanel{
 	private static String fileLocat = "C:\\Users\\lpare\\Desktop\\";
 	private static String cardType[] = {"Cards\\Failure Cards (1-43)\\","Cards\\Weapon Cards (44-63)\\","Cards\\Move Cards (64-77)\\","Cards\\Room Cards (78-97)\\"};
 	private static final long serialVersionUID = 1L;
-	
-	
 	private static String p1value[] = {Integer.toString((int) (Math.random() * 43)+1),
 			Integer.toString((int) (Math.random() * 43) + 1),Integer.toString((int) (Math.random() * 43)+1),
 			Integer.toString((int) (Math.random() * 43) + 1),Integer.toString((int) (Math.random() * 43)+1),
@@ -39,21 +36,25 @@ public class PaintPanel extends JPanel{
 											new ImageIcon(fileLocat + "Player3 Chip.png").getImage(),new ImageIcon(fileLocat + "Player4 Chip.png").getImage(),
 											new ImageIcon(fileLocat + "Player5 Chip.png").getImage(),new ImageIcon(fileLocat + "Player6 Chip.png").getImage(),
 											new ImageIcon(fileLocat + "Player7 Chip.png").getImage(),new ImageIcon(fileLocat + "Dr.Lucky Chip.png").getImage()};
-	private static int ArrayCT[][] = {{1000,30},{1150,30},{1000,200},
-			{1150,200},{1000,370},{1150,370},{1330,200},
-			{1075,530}};
+	//x and y coordinates for each player
+	private static int ArrayCT[][] = {{1000,30},{1150,30},{1000,200},{1150,200},{1000,370},{1150,370},{1330,200},{1075,530}};
 	final private int pawnWidth = 35;
 	final private int pawnHeight = 35;
+
 	private Image backImg = new ImageIcon(fileLocat + "Map_with_special_rooms.png").getImage();
+	//cardImg
 	private static Image cardImg[] = {new ImageIcon(p1[0]).getImage(),
 										new ImageIcon(p1[1]).getImage(),
 										new ImageIcon(p1[2]).getImage(),
 										new ImageIcon(p1[3]).getImage(),
 										new ImageIcon(p1[4]).getImage(),
 										new ImageIcon(p1[5]).getImage()};
+	//
 	protected static int playerNum = 0;
 	private SetPawnLocation pxy = new SetPawnLocation();
-	private int pRoom[] = {0,0,0,0,0,0,0};
+	//Player Rooms
+	private static int pRoom[] = {0,0,0,0,0,0,0};
+	//Doctor Lucky Rooms
 	private int dRoom = (int)(Math.random() * 19);
 	private static boolean clicks[] = {false,false,false,false,false,false,false};
 	private static int countClick = 0;
@@ -85,18 +86,11 @@ public class PaintPanel extends JPanel{
 		g2d.setFont(new Font("ComicSans",Font.PLAIN,15));
 		g2d.drawString("Spite Tokens",33,680);
 		
-		//Player 1,2,3
+		//Player 1,2,3 Drawn
 		if(playerNum >= 3) {
-				
+				//Player 1 Token
 				g2d.drawImage(playerIcons[0],ArrayCT[0][0],ArrayCT[0][1], pawnWidth,pawnHeight,this);
-				this.addMouseListener(new MouseListener() {
-
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						// TODO Auto-generated method stub
-						
-					}
-
+				this.addMouseListener(new MouseAdapter() {	
 					@Override
 					public void mousePressed(MouseEvent e) {
 						// TODO Auto-generated method stub
@@ -116,35 +110,11 @@ public class PaintPanel extends JPanel{
 						
 					}
 
-					@Override
-					public void mouseReleased(MouseEvent e) {
-						// TODO Auto-generated method stub
-						
-					}
-
-					@Override
-					public void mouseEntered(MouseEvent e) {
-						// TODO Auto-generated method stub
-						
-					}
-
-					@Override
-					public void mouseExited(MouseEvent e) {
-						// TODO Auto-generated method stub
-						
-					}
-					
 				});
-				
+				//Player 2 Token
 				g2d.drawImage(playerIcons[1],ArrayCT[1][0],ArrayCT[1][1], pawnWidth,pawnHeight,this);
 
-				this.addMouseListener(new MouseListener() {
-
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						// TODO Auto-generated method stub
-						
-					}
+				this.addMouseListener(new MouseAdapter() {
 
 					@Override
 					public void mousePressed(MouseEvent e) {
@@ -164,37 +134,15 @@ public class PaintPanel extends JPanel{
 						
 					}
 
-					@Override
-					public void mouseReleased(MouseEvent e) {
-						// TODO Auto-generated method stub
-
-						
-					}
-
-					@Override
-					public void mouseEntered(MouseEvent e) {
-						// TODO Auto-generated method stub
-						
-					}
-
-					@Override
-					public void mouseExited(MouseEvent e) {
-						// TODO Auto-generated method stub
-						
-					}
+		
 					
 				});
-				
+				//Player 3 Token
 				g2d.drawImage(playerIcons[2],ArrayCT[2][0],ArrayCT[2][1], pawnWidth,pawnHeight,this);
 
 				
-				this.addMouseListener(new MouseListener() {
+				this.addMouseListener(new MouseAdapter() {
 
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						// TODO Auto-generated method stub
-						
-					}
 
 					@Override
 					public void mousePressed(MouseEvent e) {
@@ -235,39 +183,16 @@ public class PaintPanel extends JPanel{
 						
 					}
 
-					@Override
-					public void mouseReleased(MouseEvent e) {
-						// TODO Auto-generated method stub
-						
-					}
-
-					@Override
-					public void mouseEntered(MouseEvent e) {
-						// TODO Auto-generated method stub
-						
-					}
-
-					@Override
-					public void mouseExited(MouseEvent e) {
-						// TODO Auto-generated method stub
-						
-					}
-					
 				});
 			
 				
 		}
 
-		//Player 4
+		//Player 4 Drawn
 		if(playerNum >=4) {
+			//Player 4 Token
 			g2d.drawImage(playerIcons[3],ArrayCT[3][0],ArrayCT[3][1], pawnWidth,pawnHeight,this);
-			this.addMouseListener(new MouseListener() {
-
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
+			this.addMouseListener(new MouseAdapter() {
 
 				@Override
 				public void mousePressed(MouseEvent e) {
@@ -307,39 +232,15 @@ public class PaintPanel extends JPanel{
 					}
 					
 				}
-
-				@Override
-				public void mouseReleased(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void mouseEntered(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void mouseExited(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
 				
 			});
 
 		}
 		//Player 5
 		if(playerNum >=5) {
-				
+			//Player 5 Token
 			g2d.drawImage(playerIcons[4],ArrayCT[4][0],ArrayCT[4][1], pawnWidth,pawnHeight,this);
-			this.addMouseListener(new MouseListener() {
-
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
+			this.addMouseListener(new MouseAdapter() {
 
 				@Override
 				public void mousePressed(MouseEvent e) {
@@ -377,38 +278,15 @@ public class PaintPanel extends JPanel{
 					}
 					
 				}
-
-				@Override
-				public void mouseReleased(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void mouseEntered(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void mouseExited(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
 				
 			});
 
 		}
 		//Player 6
 		if(playerNum >=6) {
+			//Player 6 Token
 			g2d.drawImage(playerIcons[5],ArrayCT[5][0],ArrayCT[5][1], pawnWidth,pawnHeight,this);
-			this.addMouseListener(new MouseListener() {
-
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
+			this.addMouseListener(new MouseAdapter() {
 
 				@Override
 				public void mousePressed(MouseEvent e) {
@@ -440,28 +318,10 @@ public class PaintPanel extends JPanel{
 								repaint();
 							}
 						}else {
-							MapGame.getChatRoom().append("Player 7d, your turn." + MapGame.getNextLine());
+							MapGame.getChatRoom().append("Player 7, your turn." + MapGame.getNextLine());
 						}
 						
 					}
-					
-				}
-
-				@Override
-				public void mouseReleased(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void mouseEntered(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void mouseExited(MouseEvent e) {
-					// TODO Auto-generated method stub
 					
 				}
 				
@@ -470,15 +330,9 @@ public class PaintPanel extends JPanel{
 		}
 		//Player 7
 		if(playerNum >=7) {
-				
+			//Player 7 Token
 			g2d.drawImage(playerIcons[6],ArrayCT[6][0],ArrayCT[6][1], pawnWidth,pawnHeight,this);
-			this.addMouseListener(new MouseListener() {
-
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
+			this.addMouseListener(new MouseAdapter() {
 
 				@Override
 				public void mousePressed(MouseEvent e) {
@@ -515,23 +369,6 @@ public class PaintPanel extends JPanel{
 					
 				}
 
-				@Override
-				public void mouseReleased(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void mouseEntered(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void mouseExited(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
 				
 			});
 
@@ -539,174 +376,12 @@ public class PaintPanel extends JPanel{
 		//Doctor Lucky
 		g2d.drawImage(playerIcons[7],ArrayCT[7][0],ArrayCT[7][1], pawnWidth,pawnHeight,this);
 
+		
 		//When move button is pressed, it sets clicks to true to allow the player
 		//to mouseclick to a room. This enables the player to show the green rectangles for the player
 		//to click to
-		if(clicks[countClick] == true ) {
-			//This checks where the player is at to show the nearby rooms the player can go to
-			//by the green rectangles
-			if(pRoom[countClick] == 0) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(470,125,278,178,false);//Room 3
-				g2d.draw3DRect(745,305,160,110,false);//Room 1
-				g2d.draw3DRect(310,305,160,110,false);//Room 5
-				g2d.draw3DRect(530,380,160,40,false);//Room 20
-			}else if(pRoom[countClick] == 1) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(470,305,270,80,false);//Room 0
-				g2d.draw3DRect(745,270,450,30,false);//Room 29
-				g2d.draw3DRect(745,415,160,185,false);//Room 18
-				g2d.draw3DRect(900,300,60,190,false);//Room 30
-			}else if(pRoom[countClick] == 2){
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(745,270,450,30,false);//Room 29
-				g2d.draw3DRect(470,125,278,178,false);//Room 3
-			}else if(pRoom[countClick] == 3) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(745,120,160,150,false);//Room 2
-				g2d.draw3DRect(310,120,160,150,false);//Room 4
-				g2d.draw3DRect(745,270,450,30,false);//Room 29
-				g2d.draw3DRect(20,270,450,30,false);//Room 23
-				g2d.draw3DRect(470,305,270,80,false);//Room 0
-			}else if(pRoom[countClick] == 4) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(20,270,450,30,false);//Room 23
-				g2d.draw3DRect(470,125,278,178,false);//Room 3
-			}else if(pRoom[countClick] == 5) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(255,300,60,190,false);//Room 21
-				g2d.draw3DRect(20,270,450,30,false);//Room 23
-				g2d.draw3DRect(470,305,270,80,false);//Room 0
-				g2d.draw3DRect(310,415,160,185,false);//Room 6
-			}else if(pRoom[countClick] == 6) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(310,305,160,110,false);//Room 5
-				g2d.draw3DRect(20,490,290,110,false);//Room 7
-				g2d.draw3DRect(470,415,278,185,false);//Room 19
-			}else if(pRoom[countClick] == 7) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(20,410,235,80,false);//Room 22
-				g2d.draw3DRect(255,300,60,190,false);//Room 21
-			}else if(pRoom[countClick] == 8) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(20,270,450,30,false);//Room 23
-				g2d.draw3DRect(20,410,235,80,false);//Room 22
-				g2d.draw3DRect(255,300,60,190,false);//Room 21
-			}else if(pRoom[countClick] == 9) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(20,20,230,140,false);//Room 10
-				g2d.draw3DRect(20,160,60,105,false);//Room 24
-				g2d.draw3DRect(250,20,60,140,false);//Room 25
-			}else if(pRoom[countClick] == 10) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(250,20,60,140,false);//Room 25
-				g2d.draw3DRect(80,160,230,105,false);//Room 9
-				g2d.draw3DRect(20,160,60,105,false);//Room 24
-			}else if(pRoom[countClick] == 11) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(470,20,278,65,false);//Room 12
-				g2d.draw3DRect(470,90,278,30,false);//Room 26
-				g2d.draw3DRect(250,20,60,140,false);//Room 25
-			}else if(pRoom[countClick] == 12) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(745,20,160,100,false);//Room 13
-				g2d.draw3DRect(310,20,160,100,false);//Room 11
-			}else if(pRoom[countClick] == 13) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(900,20,60,140,false);//Room 27
-				g2d.draw3DRect(470,90,278,30,false);//Room 26
-				g2d.draw3DRect(470,20,278,65,false);//Room 12
-			}else if(pRoom[countClick] == 14) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(900,20,60,140,false);//Room 27
-				g2d.draw3DRect(1140,160,60,105,false);//Room 28
-				g2d.draw3DRect(910,160,230,105,false);//Room 15
-			}else if(pRoom[countClick] == 15) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(1140,160,60,105,false);//Room 28
-				g2d.draw3DRect(960,20,240,140,false);//Room 14
-				g2d.draw3DRect(900,20,60,140,false);//Room 27
-			}else if(pRoom[countClick] == 16) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(745,270,450,30,false);//Room 29
-				g2d.draw3DRect(900,300,60,190,false);//Room 30
-				g2d.draw3DRect(960,410,235,80,false);//Room 31
-			}else if(pRoom[countClick] == 17) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(745,415,160,185,false);//Room 18
-				g2d.draw3DRect(900,300,60,190,false);//Room 30
-				g2d.draw3DRect(960,410,235,80,false);//Room 31
-			}else if(pRoom[countClick] == 18) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(745,305,160,110,false);//Room 1
-				g2d.draw3DRect(470,415,278,185,false);//Room 19
-				g2d.draw3DRect(900,490,290,110,false);//Room 17
-			}else if(pRoom[countClick] == 19) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(530,380,160,40,false);//Room 20
-				g2d.draw3DRect(745,415,160,185,false);//Room 18
-				g2d.draw3DRect(310,415,160,185,false);//Room 6
-			}else if(pRoom[countClick] == 20) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(470,305,270,80,false);//Room 0
-				g2d.draw3DRect(470,415,278,185,false);//Room 19
-			}else if(pRoom[countClick] == 21) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(310,305,160,110,false);//Room 5
-				g2d.draw3DRect(20,300,235,110,false);//Room 8
-			}else if(pRoom[countClick] == 22) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(20,300,235,110,false);//Room 8
-				g2d.draw3DRect(20,490,290,110,false);//Room 7
-			}else if(pRoom[countClick] == 23) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(310,120,160,150,false);//Room 4
-				g2d.draw3DRect(310,305,160,110,false);//Room 5
-				g2d.draw3DRect(255,300,60,190,false);//Room 21
-				g2d.draw3DRect(20,300,235,110,false);//Room 8
-			}else if(pRoom[countClick] == 24) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(20,20,230,140,false);//Room 10
-				g2d.draw3DRect(80,160,230,105,false);//Room 9
-				g2d.draw3DRect(20,270,450,30,false);//Room 23
-			}else if(pRoom[countClick] == 25) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(310,20,160,100,false);//Room 11
-				g2d.draw3DRect(80,160,230,105,false);//Room 9
-				g2d.draw3DRect(20,20,230,140,false);//Room 10
-			}else if(pRoom[countClick] == 26) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(470,125,278,178,false);//Room 3
-				g2d.draw3DRect(310,20,160,100,false);//Room 11
-				g2d.draw3DRect(745,20,160,100,false);//Room 13
-			}else if(pRoom[countClick] == 27) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(910,160,230,105,false);//Room 15
-				g2d.draw3DRect(960,20,240,140,false);//Room 14
-				g2d.draw3DRect(745,20,160,100,false);//Room 13
-			}else if(pRoom[countClick] == 28) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(745,270,450,30,false);//Room 29
-				g2d.draw3DRect(910,160,230,105,false);//Room 15
-				g2d.draw3DRect(960,20,240,140,false);//Room 14
-			}else if(pRoom[countClick] == 29) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(900,300,60,190,false);//Room 30
-				g2d.draw3DRect(745,120,160,150,false);//Room 2
-				g2d.draw3DRect(745,305,160,110,false);//Room 1
-				g2d.draw3DRect(960,300,235,110,false);//Room 16
-				g2d.draw3DRect(1140,160,60,105,false);//Room 28
-			}else if(pRoom[countClick] == 30) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(900,490,290,110,false);//Room 17
-				g2d.draw3DRect(960,300,235,110,false);//Room 16
-				g2d.draw3DRect(745,305,160,110,false);//Room 1
-			}else if(pRoom[countClick] == 31) {
-				g2d.setColor(Color.green);
-				g2d.draw3DRect(900,490,290,110,false);//Room 17
-				g2d.draw3DRect(960,300,235,110,false);//Room 16
-			}
-		}
+		Highlights.paintHighlights(g2d);
+
 
 	}
 	//Loads the player location 
@@ -789,7 +464,21 @@ public class PaintPanel extends JPanel{
 	public static void setCountClick(int n) {
 		countClick = n;
 	}
-
 	
+	public static int getPlayerNum() {
+		return playerNum;
+	}
+	
+	public static boolean getClick(int n) {
+		return clicks[n];
+	}
+	
+	public static int getCountClick() {
+		return countClick;
+	}
+	
+	public static int getPRoom(int num) {
+		return pRoom[num];
+	}
 
 }
