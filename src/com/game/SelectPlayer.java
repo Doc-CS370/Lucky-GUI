@@ -17,11 +17,11 @@ public class SelectPlayer extends JFrame{
 	private JLabel pn = new JLabel("Amount of Players:");
 	private String numOfPlayers[] = {"Three","Four","Five","Six","Seven"};
 	private JComboBox<String> aOP = new JComboBox<>(numOfPlayers);
-	private JPanel playerNum;
+	private JPanel playerNumber;
 
 	SelectPlayer(){
-		playerNum = new JPanel();
-		playerNum.setLayout(null);
+		playerNumber = new JPanel();
+		playerNumber.setLayout(null);
 		pn.setBounds(30, 30, 140, 50);
 		pn.setFont(new Font("ArialBlack",Font.ITALIC,15));
 		
@@ -34,42 +34,62 @@ public class SelectPlayer extends JFrame{
 				// TODO Auto-generated method stub
 				if(aOP.getSelectedItem() == "Three") {
 					setVisible(false);
+					PaintPanel.playerNum = 3;
+					MapGame.numPlayers = 3;
 					MapGame m = new MapGame();
 					m.setVisible(true);
-					PaintPanel.playerNum = 3;
+					repaint();
+					
+
 				}
 				else if(aOP.getSelectedItem() == "Four") {
 					setVisible(false);
+					PaintPanel.playerNum = 4;
+					MapGame.numPlayers = 4;
 					MapGame m = new MapGame();
 					m.setVisible(true);
-					PaintPanel.playerNum = 4;
+					repaint();
+					
+					
+					
 					
 				}
 				else if(aOP.getSelectedItem() == "Five") {
 					setVisible(false);
+					PaintPanel.playerNum = 5;
+					MapGame.numPlayers = 5;
 					MapGame m = new MapGame();
 					m.setVisible(true);
-					PaintPanel.playerNum = 5;
+					repaint();
+					
+					
 					
 				}
 				else if(aOP.getSelectedItem() == "Six") {
 					setVisible(false);
+					PaintPanel.playerNum = 6;
+					MapGame.numPlayers = 6;
 					MapGame m = new MapGame();
 					m.setVisible(true);
-					PaintPanel.playerNum = 6;
+					repaint();
+					
+					
 				}
 				else {
 					setVisible(false);
+					PaintPanel.playerNum = 7;
+					MapGame.numPlayers = 7;
 					MapGame m = new MapGame();
 					m.setVisible(true);
-					PaintPanel.playerNum = 7;
+					repaint();
+					
 				}
 			}
 			
 		});
-		playerNum.add(pn);
-		playerNum.add(aOP);
-		add(playerNum);
+		playerNumber.add(pn);
+		playerNumber.add(aOP);
+		add(playerNumber);
 		setResizable(false);
 		setSize(200, 200);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
