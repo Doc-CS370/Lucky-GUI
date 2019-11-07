@@ -11,6 +11,7 @@ import java.util.Arrays;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -41,8 +42,7 @@ public class MapGame extends JFrame {
 	static card[] Card = new card[98];
 	static room[] Room = new room[32];
 	static player player[] = new player[8];
-	static int dRoom = (int)(Math.random() * 20);
-
+	
 	/**
 	 * 
 	 */
@@ -78,7 +78,7 @@ public class MapGame extends JFrame {
 			}else {
 			player[i] = new player();
 			player[i].setAlive();
-			player[i].setName("THE PLAYA'");
+			player[i].setName("Player " + Integer.toString(i));
 			player[i].setLocation(0);
 
 			eventHandler.drawCard(Card, player, i);
@@ -106,8 +106,6 @@ public class MapGame extends JFrame {
 		PaintPanel.updateRooms(Room);
 		
 
-		
-		setLayout(new BorderLayout());
 		mapG.setLayout(null);
 		JScrollPane scroll = new JScrollPane(chatRoom);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -229,7 +227,6 @@ public class MapGame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if (countNum < PaintPanel.playerNum) {
 					PaintPanel.setCountClick(countNum);
 					trueOrFalseClick[countNum] = true;
 					PaintPanel.setBoolArrayStart(trueOrFalseClick);
@@ -237,20 +234,6 @@ public class MapGame extends JFrame {
 					trueOrFalseClick = PaintPanel.getBoolArrayBack();
 					repaint();
 					move.setEnabled(false);
-					countNum++;
-				} else {
-					countNum = 0;
-					//cout = 0;
-					PaintPanel.setCountClick(countNum);
-					
-					trueOrFalseClick[countNum] = true;
-					PaintPanel.setBoolArrayStart(trueOrFalseClick);
-					//cout++;
-					trueOrFalseClick = PaintPanel.getBoolArrayBack();
-					repaint();
-					move.setEnabled(false);
-					countNum++;
-				}
 			}
 
 		});
@@ -272,39 +255,50 @@ public class MapGame extends JFrame {
 				// TODO Auto-generated method stub
 				if(GetCardLocation.currentCardNumber >= 1 && GetCardLocation.currentCardNumber <= 43) {
 					eventHandler.useFailureCard(player,1, Card, GetCardLocation.currentCardNumber);
+					chatRoom.append("You used card number " + Card[GetCardLocation.currentCardNumber].getCardNumber() 
+									+",Failure Card." + nL +Card[GetCardLocation.currentCardNumber].getCardFlavor() + nL);
 					for(int j = 0; j < player[1].getPlayerHand().length;j++) {
 						int[] playerHand = player[1].getPlayerHand();
 						PaintPanel.setP1Value(j,Integer.toString(playerHand[j]));
 						
 					}
 					PaintPanel.updateCardImg();
+					use.setEnabled(false);
 					repaint();
 				}
 				else if(GetCardLocation.currentCardNumber >= 44 && GetCardLocation.currentCardNumber <= 63) {
 					eventHandler.useWeaponCard(player, 1, Card, GetCardLocation.currentCardNumber, true);
-					
+					chatRoom.append("You used card number " + Card[GetCardLocation.currentCardNumber].getCardNumber() 
+							+",Weapon Card." + nL +"The weapon is " +Card[GetCardLocation.currentCardNumber].getCardFlavor() + nL);
 					for(int j = 0; j < player[1].getPlayerHand().length;j++) {
 						int[] playerHand = player[1].getPlayerHand();
 						PaintPanel.setP1Value(j,Integer.toString(playerHand[j]));
 						
 					}
 					PaintPanel.updateCardImg();
+					use.setEnabled(false);
 					repaint();
 				}
 				else if(GetCardLocation.currentCardNumber >= 64 && GetCardLocation.currentCardNumber <= 77) {
 					eventHandler.useMoveCard(Card, player, GetCardLocation.currentCardNumber, 1);
 					
+					chatRoom.append("You used card number " + Card[GetCardLocation.currentCardNumber].getCardNumber() 
+							+",Move Card." + nL +Card[GetCardLocation.currentCardNumber].getCardFlavor() + nL + "You have " 
+							+ Card[GetCardLocation.currentCardNumber].getCardValue() + " turns left." +nL);
 					for(int j = 0; j < player[1].getPlayerHand().length;j++) {
 						int[] playerHand = player[1].getPlayerHand();
 						PaintPanel.setP1Value(j,Integer.toString(playerHand[j]));
 						
 					}
 					PaintPanel.updateCardImg();
+					use.setEnabled(false);
 					repaint();
 				}
 				else if(GetCardLocation.currentCardNumber >= 78 && GetCardLocation.currentCardNumber <= 97) {
+					JOptionPane.showMessageDialog(null, "You or Doctor Lucky?");
 					eventHandler.useRoomCard(Room, Card, player, GetCardLocation.currentCardNumber, 1, 1);
-					player[1].print();
+					chatRoom.append("You used card number " + Card[GetCardLocation.currentCardNumber].getCardNumber() 
+							+",Room Card." + nL +Card[GetCardLocation.currentCardNumber].getCardFlavor() + nL);
 					PaintPanel.setPRoom(0,player[1].getLocation());
 					PaintPanel.resetPlayerRoom(0);
 					for(int j = 0; j < player[1].getPlayerHand().length;j++) {
@@ -315,6 +309,7 @@ public class MapGame extends JFrame {
 					PaintPanel.setPlayerLoad();
 					PaintPanel.updatePlayers(player);
 					PaintPanel.updateCardImg();
+					use.setEnabled(false);
 					repaint();
 				}
 				
@@ -335,16 +330,64 @@ public class MapGame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				eventHandler.drawCard(Card, player, 1);
-				System.out.println(Arrays.toString(player[1].getPlayerHand()));
-				for(int j = 0; j < player[1].getPlayerHand().length;j++) {
-					int[] playerHand = player[1].getPlayerHand();
-					PaintPanel.setP1Value(j,Integer.toString(playerHand[j]));
+				if (countNum < PaintPanel.playerNum-1) {
+					countNum++;
+					chatRoom.append(player[countNum+1].getName() + ",your turn." + nL
+							+player[countNum+1].getName() + ",you are in the "
+							+Room[player[countNum+1].getLocation()].getRoomFlavor() + nL);
+					eventHandler.drawCard(Card, player, 1);
+					System.out.println(Arrays.toString(player[1].getPlayerHand()));
+					for(int j = 0; j < player[1].getPlayerHand().length;j++) {
+						int[] playerHand = player[1].getPlayerHand();
+						PaintPanel.setP1Value(j,Integer.toString(playerHand[j]));
+						
+					}
+					
+					PaintPanel.updateCardImg();
+					repaint();
+					move.setEnabled(true);
+					use.setEnabled(true);
+					
+					
+				} else {
+					
+					//cout = 0;
+					eventHandler.drawCard(Card, player, 1);
+					System.out.println(Arrays.toString(player[1].getPlayerHand()));
+					for(int j = 0; j < player[1].getPlayerHand().length;j++) {
+						int[] playerHand = player[1].getPlayerHand();
+						PaintPanel.setP1Value(j,Integer.toString(playerHand[j]));
+						
+					}
+					
+					PaintPanel.updateCardImg();
+					countNum = 0;
+					if(PaintPanel.getDRoom() <=19) {
+						PaintPanel.setCountClick(0);
+						PaintPanel.setDRoom(PaintPanel.getDRoom()+1);
+						player[0].setLocation(PaintPanel.getDRoom());
+						PaintPanel.setDoctorLoad();
+						MapGame.getChatRoom().append("Doctor Lucky has moved to " + Room[PaintPanel.getDRoom()].getRoomFlavor() + nL);
+						repaint();
+					}else {
+						PaintPanel.setCountClick(0);
+						PaintPanel.setDRoom(0);
+						player[0].setLocation(PaintPanel.getDRoom());
+						PaintPanel.setDoctorLoad();
+						MapGame.getChatRoom().append("Doctor Lucky has moved to " + Room[PaintPanel.getDRoom()].getRoomFlavor() + MapGame.getNextLine());
+
+						repaint();
+					}
+					chatRoom.append(player[countNum+1].getName() + ",your turn." + nL
+							+player[countNum+1].getName() + ",you are in the "
+							+Room[player[countNum+1].getLocation()].getRoomFlavor() + nL);
+					repaint();
+					move.setEnabled(true);
+					use.setEnabled(true);
 					
 				}
-				PaintPanel.updateCardImg();
-				repaint();
-				draw.setEnabled(false);
+				
+				
 			}
 			
 		});
@@ -362,7 +405,7 @@ public class MapGame extends JFrame {
 
 		add(mapG);
 		setResizable(false);
-		setSize(Toolkit.getDefaultToolkit().getScreenSize());
+		setSize(1530,830);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		PaintPanel.updatePlayers(player);

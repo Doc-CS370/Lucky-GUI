@@ -21,6 +21,7 @@ public class HighlightRooms {
 				g2d.drawRect(745,305,160,110);//Room 1
 				g2d.drawRect(310,305,160,110);//Room 5
 				g2d.drawRect(530,380,160,40);//Room 20
+				
 			}else if(PaintPanel.getPRoom(PaintPanel.getCountClick()) == 1) {
 				g2d.setStroke(new BasicStroke(4));
 				g2d.setColor(Color.green);
