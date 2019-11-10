@@ -1,13 +1,10 @@
 package com.game;
 
-import java.awt.BorderLayout;
+
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -36,7 +33,7 @@ public class MapGame extends JFrame {
 
 	private static String nL = "\n";
 	private JPanel mapG = new PaintPanel();
-	private int countNum = 0;
+	protected static int countNum = 0;
 	protected static int numPlayers = 0;
 	protected static boolean useTheCard = false;
 	static card[] Card = new card[98];
@@ -92,18 +89,13 @@ public class MapGame extends JFrame {
 			}
 			player[i].print();
 		}
-		
-		
-		for(int j = 0; j < player[1].getPlayerHand().length;j++) {
-			int[] playerHand = player[1].getPlayerHand();
-			PaintPanel.setP1Value(j,Integer.toString(playerHand[j]));
-			
-		}
+		setCardDeck(1);
 		PaintPanel.updateCardImg();
-		repaint();
 		PaintPanel.updatePlayers(player);
 		PaintPanel.updateCards(Card);
 		PaintPanel.updateRooms(Room);
+		repaint();
+
 		
 
 		mapG.setLayout(null);
@@ -227,13 +219,16 @@ public class MapGame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-					PaintPanel.setCountClick(countNum);
-					trueOrFalseClick[countNum] = true;
-					PaintPanel.setBoolArrayStart(trueOrFalseClick);
+				PaintPanel.setCountClick(countNum);
+				trueOrFalseClick[countNum] = true;
+				PaintPanel.setBoolArrayStart(trueOrFalseClick);
 					//cout++;
-					trueOrFalseClick = PaintPanel.getBoolArrayBack();
-					repaint();
-					move.setEnabled(false);
+				trueOrFalseClick = PaintPanel.getBoolArrayBack();
+					
+					
+				repaint();
+				
+				move.setEnabled(false);
 			}
 
 		});
@@ -254,58 +249,43 @@ public class MapGame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if(GetCardLocation.currentCardNumber >= 1 && GetCardLocation.currentCardNumber <= 43) {
-					eventHandler.useFailureCard(player,1, Card, GetCardLocation.currentCardNumber);
+					eventHandler.useFailureCard(player,countNum+1, Card, GetCardLocation.currentCardNumber);
 					chatRoom.append("You used card number " + Card[GetCardLocation.currentCardNumber].getCardNumber() 
 									+",Failure Card." + nL +Card[GetCardLocation.currentCardNumber].getCardFlavor() + nL);
-					for(int j = 0; j < player[1].getPlayerHand().length;j++) {
-						int[] playerHand = player[1].getPlayerHand();
-						PaintPanel.setP1Value(j,Integer.toString(playerHand[j]));
-						
-					}
+					setCardDeck(countNum+1);
 					PaintPanel.updateCardImg();
 					use.setEnabled(false);
 					repaint();
 				}
 				else if(GetCardLocation.currentCardNumber >= 44 && GetCardLocation.currentCardNumber <= 63) {
-					eventHandler.useWeaponCard(player, 1, Card, GetCardLocation.currentCardNumber, true);
+					eventHandler.useWeaponCard(player, countNum+1, Card, GetCardLocation.currentCardNumber, true);
 					chatRoom.append("You used card number " + Card[GetCardLocation.currentCardNumber].getCardNumber() 
 							+",Weapon Card." + nL +"The weapon is " +Card[GetCardLocation.currentCardNumber].getCardFlavor() + nL);
-					for(int j = 0; j < player[1].getPlayerHand().length;j++) {
-						int[] playerHand = player[1].getPlayerHand();
-						PaintPanel.setP1Value(j,Integer.toString(playerHand[j]));
-						
-					}
+					setCardDeck(countNum+1);
 					PaintPanel.updateCardImg();
 					use.setEnabled(false);
 					repaint();
 				}
 				else if(GetCardLocation.currentCardNumber >= 64 && GetCardLocation.currentCardNumber <= 77) {
-					eventHandler.useMoveCard(Card, player, GetCardLocation.currentCardNumber, 1);
+					eventHandler.useMoveCard(Card, player, GetCardLocation.currentCardNumber, countNum+1);
 					
 					chatRoom.append("You used card number " + Card[GetCardLocation.currentCardNumber].getCardNumber() 
 							+",Move Card." + nL +Card[GetCardLocation.currentCardNumber].getCardFlavor() + nL + "You have " 
 							+ Card[GetCardLocation.currentCardNumber].getCardValue() + " turns left." +nL);
-					for(int j = 0; j < player[1].getPlayerHand().length;j++) {
-						int[] playerHand = player[1].getPlayerHand();
-						PaintPanel.setP1Value(j,Integer.toString(playerHand[j]));
-						
-					}
+					setCardDeck(countNum+1);
 					PaintPanel.updateCardImg();
 					use.setEnabled(false);
+					System.out.println("Turns: " + player[1].getTurnsLeft());
 					repaint();
 				}
 				else if(GetCardLocation.currentCardNumber >= 78 && GetCardLocation.currentCardNumber <= 97) {
 					JOptionPane.showMessageDialog(null, "You or Doctor Lucky?");
-					eventHandler.useRoomCard(Room, Card, player, GetCardLocation.currentCardNumber, 1, 1);
+					eventHandler.useRoomCard(Room, Card, player, GetCardLocation.currentCardNumber, countNum+1, countNum+1);
 					chatRoom.append("You used card number " + Card[GetCardLocation.currentCardNumber].getCardNumber() 
 							+",Room Card." + nL +Card[GetCardLocation.currentCardNumber].getCardFlavor() + nL);
-					PaintPanel.setPRoom(0,player[1].getLocation());
-					PaintPanel.resetPlayerRoom(0);
-					for(int j = 0; j < player[1].getPlayerHand().length;j++) {
-						int[] playerHand = player[1].getPlayerHand();
-						PaintPanel.setP1Value(j,Integer.toString(playerHand[j]));
-						
-					}
+					PaintPanel.setPRoom(countNum,player[countNum+1].getLocation());
+					PaintPanel.resetPlayerRoom(countNum);
+					setCardDeck(countNum+1);
 					PaintPanel.setPlayerLoad();
 					PaintPanel.updatePlayers(player);
 					PaintPanel.updateCardImg();
@@ -331,51 +311,45 @@ public class MapGame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if (countNum < PaintPanel.playerNum-1) {
+					eventHandler.drawCard(Card, player, countNum+1);
 					countNum++;
 					chatRoom.append(player[countNum+1].getName() + ",your turn." + nL
 							+player[countNum+1].getName() + ",you are in the "
 							+Room[player[countNum+1].getLocation()].getRoomFlavor() + nL);
-					eventHandler.drawCard(Card, player, 1);
-					System.out.println(Arrays.toString(player[1].getPlayerHand()));
-					for(int j = 0; j < player[1].getPlayerHand().length;j++) {
-						int[] playerHand = player[1].getPlayerHand();
-						PaintPanel.setP1Value(j,Integer.toString(playerHand[j]));
-						
-					}
 					
+					
+					setCardDeck(countNum+1);
 					PaintPanel.updateCardImg();
 					repaint();
+					printAllPlayers();
 					move.setEnabled(true);
 					use.setEnabled(true);
 					
 					
-				} else {
+				}else {
+					
 					
 					//cout = 0;
-					eventHandler.drawCard(Card, player, 1);
-					System.out.println(Arrays.toString(player[1].getPlayerHand()));
-					for(int j = 0; j < player[1].getPlayerHand().length;j++) {
-						int[] playerHand = player[1].getPlayerHand();
-						PaintPanel.setP1Value(j,Integer.toString(playerHand[j]));
-						
-					}
+					eventHandler.drawCard(Card, player, countNum+1);
+					
+					countNum = 0;
+					setCardDeck(countNum + 1);
 					
 					PaintPanel.updateCardImg();
-					countNum = 0;
+					printAllPlayers();
 					if(PaintPanel.getDRoom() <=19) {
 						PaintPanel.setCountClick(0);
 						PaintPanel.setDRoom(PaintPanel.getDRoom()+1);
-						player[0].setLocation(PaintPanel.getDRoom());
+						player[countNum].setLocation(PaintPanel.getDRoom());
 						PaintPanel.setDoctorLoad();
 						MapGame.getChatRoom().append("Doctor Lucky has moved to " + Room[PaintPanel.getDRoom()].getRoomFlavor() + nL);
 						repaint();
 					}else {
 						PaintPanel.setCountClick(0);
 						PaintPanel.setDRoom(0);
-						player[0].setLocation(PaintPanel.getDRoom());
+						player[countNum].setLocation(PaintPanel.getDRoom());
 						PaintPanel.setDoctorLoad();
 						MapGame.getChatRoom().append("Doctor Lucky has moved to " + Room[PaintPanel.getDRoom()].getRoomFlavor() + MapGame.getNextLine());
-
 						repaint();
 					}
 					chatRoom.append(player[countNum+1].getName() + ",your turn." + nL
@@ -453,6 +427,19 @@ public class MapGame extends JFrame {
 	}
 	public static room[] getRoom() {
 		return Room;
+	}
+	
+	public static void setCardDeck(int num) {
+		for(int j = 0; j < player[num].getPlayerHand().length;j++) {
+			int[] playerHand = player[num].getPlayerHand();
+			PaintPanel.setP1Value(j,Integer.toString(playerHand[j]));	
+		}
+	}
+	
+	public static void printAllPlayers() {
+		for(int j = 0; j >numPlayers;j++) {
+			player[j].print();
+		}
 	}
 
 }
