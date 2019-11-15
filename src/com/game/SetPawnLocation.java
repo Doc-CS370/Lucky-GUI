@@ -1,6 +1,8 @@
 package com.game;
 
 
+
+
 public class SetPawnLocation {
 	protected static int xp = 0;
 	protected static int yp = 0;

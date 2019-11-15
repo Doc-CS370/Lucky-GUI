@@ -1,5 +1,6 @@
 package com.game;
 
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -19,21 +20,7 @@ public class PaintPanel extends JPanel {
 	private static String fileLocat = "C:\\Users\\lpare\\Desktop\\";
 
 	private static final long serialVersionUID = 1L;
-	private static String p1value[] = { Integer.toString((int) (Math.random() * 14) + 64),
-			Integer.toString((int) (Math.random() * 14) + 64), Integer.toString((int) (Math.random() * 14) + 64),
-			Integer.toString((int) (Math.random() * 14) + 64), Integer.toString((int) (Math.random() * 14) + 64),
-			Integer.toString((int) (Math.random() * 14) + 64), Integer.toString((int) (Math.random() * 14) + 64), "0",
-			"0", "0" };
-	private static String p2value[] = { Integer.toString((int) (Math.random() * 20) + 78),
-			Integer.toString((int) (Math.random() * 20) + 78), Integer.toString((int) (Math.random() * 20) + 78),
-			Integer.toString((int) (Math.random() * 20) + 78), Integer.toString((int) (Math.random() * 20) + 78),
-			Integer.toString((int) (Math.random() * 20) + 78), Integer.toString((int) (Math.random() * 20) + 78), "0",
-			"0", "0" };
-	private static String p3value[] = { Integer.toString((int) (Math.random() * 14) + 64),
-			Integer.toString((int) (Math.random() * 14) + 64), Integer.toString((int) (Math.random() * 14) + 64),
-			Integer.toString((int) (Math.random() * 20) + 78), Integer.toString((int) (Math.random() * 20) + 78),
-			Integer.toString((int) (Math.random() * 20) + 78), Integer.toString((int) (Math.random() * 20) + 78), "0",
-			"0", "0" };
+	private static String p1value[] = {"0","0","0","0","0","0","0","0","0","0"};
 	private static String p1[] = { fileLocat + "Cards//" + p1value[0] + ".png",
 			fileLocat + "Cards//" + p1value[1] + ".png", fileLocat + "Cards//" + p1value[2] + ".png",
 			fileLocat + "Cards//" + p1value[3] + ".png", fileLocat + "Cards//" + p1value[4] + ".png",
@@ -489,18 +476,6 @@ public class PaintPanel extends JPanel {
 		System.out.println(Arrays.toString(p1value));
 	}
 
-	// The string value for Player 2 deck
-	public static String getP2Value(int num) {
-		return p2value[num];
-
-	}
-
-	// The string value for Player 3 deck
-	public static String getP3Value(int num) {
-		return p3value[num];
-
-	}
-
 	public static String getFileLocat() {
 		return fileLocat;
 
@@ -567,19 +542,11 @@ public class PaintPanel extends JPanel {
 	}
 
 	public static void updateCardImg() {
-		PaintPanel.setArray(0, PaintPanel.getFileLocat() + "Cards//" + PaintPanel.getP1Value(0) + ".png");
-		PaintPanel.setArray(1, PaintPanel.getFileLocat() + "Cards//" + PaintPanel.getP1Value(1) + ".png");
-		PaintPanel.setArray(2, PaintPanel.getFileLocat() + "Cards//" + PaintPanel.getP1Value(2) + ".png");
-		PaintPanel.setArray(3, PaintPanel.getFileLocat() + "Cards//" + PaintPanel.getP1Value(3) + ".png");
-		PaintPanel.setArray(4, PaintPanel.getFileLocat() + "Cards//" + PaintPanel.getP1Value(4) + ".png");
-		PaintPanel.setArray(5, PaintPanel.getFileLocat() + "Cards//" + PaintPanel.getP1Value(5) + ".png");
-
-		PaintPanel.setCardValue(0, new ImageIcon(PaintPanel.getImageValue(0)).getImage());
-		PaintPanel.setCardValue(1, new ImageIcon(PaintPanel.getImageValue(1)).getImage());
-		PaintPanel.setCardValue(2, new ImageIcon(PaintPanel.getImageValue(2)).getImage());
-		PaintPanel.setCardValue(3, new ImageIcon(PaintPanel.getImageValue(3)).getImage());
-		PaintPanel.setCardValue(4, new ImageIcon(PaintPanel.getImageValue(4)).getImage());
-		PaintPanel.setCardValue(5, new ImageIcon(PaintPanel.getImageValue(5)).getImage());
+		for(int i = 0;i<6;i++) {
+			PaintPanel.setArray(i, PaintPanel.getFileLocat() + "Cards//" + PaintPanel.getP1Value(i) + ".png");
+			PaintPanel.setCardValue(i, new ImageIcon(PaintPanel.getImageValue(i)).getImage());
+		}
+		
 	}
 
 }

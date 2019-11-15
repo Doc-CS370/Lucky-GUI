@@ -1,6 +1,7 @@
 package com.game;
 
 
+
 import java.awt.Graphics;
 
 public class GetCardLocation {

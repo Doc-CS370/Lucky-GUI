@@ -1,6 +1,7 @@
 package com.game;
 
 
+
 public class GetPawnLocation {
 	protected static int roomNum = 0;
 	
