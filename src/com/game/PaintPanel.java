@@ -34,8 +34,9 @@ public class PaintPanel extends JPanel {
 			new ImageIcon(fileLocat + "Player6 Chip.png").getImage(),
 			new ImageIcon(fileLocat + "Player7 Chip.png").getImage(), };
 	// x and y coordinates for each player
-	private static int ArrayCT[][] = { { 1075, 530 }, { 1000, 30 }, { 1150, 30 }, { 1000, 200 }, { 1150, 200 },
-			{ 1000, 370 }, { 1150, 370 }, { 1330, 200 } };
+	private static int ArrayCT[][] = { { 1075, 530 }, { 1000, 30 }, { 1150, 30}, { 1000, 200 }, { 1150, 200 },
+			{ 1000, 370 }, { 1150, 370,0,0 }, { 1330, 200 } };
+	private static int previousXY[] = {0,0};
 	final private int pawnWidth = 35;
 	final private int pawnHeight = 35;
 
@@ -111,19 +112,28 @@ public class PaintPanel extends JPanel {
 				public void mousePressed(MouseEvent e) {
 					// TODO Auto-generated method stub
 					if (clicks[0] == true) {
-
+						previousXY[0]= ArrayCT[1][0];
+						previousXY[1]= ArrayCT[1][1];
+						
 						ArrayCT[1][0] = e.getX() - 12;
 						ArrayCT[1][1] = e.getY() - 8;
 						GetPawnLocation.getXYCoordinates(ArrayCT[1][0], ArrayCT[1][1]);
+						if(GetPawnLocation.checkIfPlayerIsInMapBounds(ArrayCT[1][0], ArrayCT[1][1])) {
+							found = 0;
+						}
 						System.out.println("AdjacentRooms: " + Arrays.toString(Room[GetPawnLocation.getRoom()].adjacentRooms));
 						for(int i=0;i<Room[pRoom[0]].adjacentRooms.length;i++) {
 							if(Room[pRoom[0]].adjacentRooms[i] == GetPawnLocation.getRoom()) {
 								found++;				
 							}
+							
 						}	
 						if(found==0) {
+							ArrayCT[1][0] = previousXY[0];
+							ArrayCT[1][1] = previousXY[1];
 							System.out.println("Found Count: " + found);
-							MapGame.getChatRoom().append("Try Again!" + MapGame.getNextLine());	
+							MapGame.getChatRoom().append("Try Again!" + MapGame.getNextLine());
+							repaint();
 							clicks[0]=false;
 							MapGame.getMoveJButton().setEnabled(true);
 							
@@ -136,6 +146,11 @@ public class PaintPanel extends JPanel {
 							repaint();
 							MapGame.getMoveJButton().setEnabled(false);
 							found = 0;
+						}
+						if(player[1].getTurnsLeft() >0) {
+							player[1].endTurn();
+							clicks[0] = true;
+							
 						}
 					}
 				}
@@ -150,15 +165,23 @@ public class PaintPanel extends JPanel {
 				public void mousePressed(MouseEvent e) {
 					// TODO Auto-generated method stub
 					if (clicks[1] == true) {
+						previousXY[0]= ArrayCT[2][0];
+						previousXY[1]= ArrayCT[2][1];
+						
 						ArrayCT[2][0] = e.getX() - 12;
 						ArrayCT[2][1] = e.getY() - 8;
 						GetPawnLocation.getXYCoordinates(ArrayCT[2][0], ArrayCT[2][1]);
+						if(GetPawnLocation.checkIfPlayerIsInMapBounds(ArrayCT[2][0], ArrayCT[2][1])) {
+							found = 0;
+						}
 						for(int i=0;i<Room[pRoom[1]].adjacentRooms.length;i++) {
 							if(Room[pRoom[1]].adjacentRooms[i] == GetPawnLocation.getRoom()) {
 								found++;				
 							}
 						}	
 						if(found==0) {
+							ArrayCT[2][0] = previousXY[0];
+							ArrayCT[2][1] = previousXY[1];
 							System.out.println("Found Count: " + found);
 							MapGame.getChatRoom().append("Try Again!" + MapGame.getNextLine());	
 							clicks[1]=false;
@@ -174,6 +197,11 @@ public class PaintPanel extends JPanel {
 							MapGame.getMoveJButton().setEnabled(false);
 							found = 0;
 						}
+						if(player[2].getTurnsLeft() >0) {
+							player[2].endTurn();
+							clicks[1] = true;
+							
+						}
 					}
 
 				}
@@ -188,15 +216,23 @@ public class PaintPanel extends JPanel {
 				public void mousePressed(MouseEvent e) {
 					// TODO Auto-generated method stub
 					if (clicks[2] == true) {
+						previousXY[0]= ArrayCT[3][0];
+						previousXY[1]= ArrayCT[3][1];
+						
 						ArrayCT[3][0] = e.getX() - 12;
 						ArrayCT[3][1] = e.getY() - 8;
 						GetPawnLocation.getXYCoordinates(ArrayCT[3][0], ArrayCT[3][1]);
+						if(GetPawnLocation.checkIfPlayerIsInMapBounds(ArrayCT[3][0], ArrayCT[3][1])) {
+							found = 0;
+						}
 						for(int i=0;i<Room[pRoom[2]].adjacentRooms.length;i++) {
 							if(Room[pRoom[2]].adjacentRooms[i] == GetPawnLocation.getRoom()) {
 								found++;				
 							}
 						}	
 						if(found==0) {
+							ArrayCT[3][0] = previousXY[0];
+							ArrayCT[3][1] = previousXY[1];
 							System.out.println("Found Count: " + found);
 							MapGame.getChatRoom().append("Try Again!" + MapGame.getNextLine());	
 							clicks[2]=false;
@@ -211,6 +247,11 @@ public class PaintPanel extends JPanel {
 							repaint();
 							MapGame.getMoveJButton().setEnabled(false);
 							found = 0;
+						}
+						if(player[3].getTurnsLeft() >0) {
+							player[3].endTurn();
+							clicks[2] = true;
+							
 						}
 
 					}
@@ -231,15 +272,23 @@ public class PaintPanel extends JPanel {
 				public void mousePressed(MouseEvent e) {
 					// TODO Auto-generated method stub
 					if (clicks[3] == true) {
+						previousXY[0]= ArrayCT[4][0];
+						previousXY[1]= ArrayCT[4][1];
+						
 						ArrayCT[4][0] = e.getX() - 12;
 						ArrayCT[4][1] = e.getY() - 8;
 						GetPawnLocation.getXYCoordinates(ArrayCT[4][0], ArrayCT[4][1]);
+						if(GetPawnLocation.checkIfPlayerIsInMapBounds(ArrayCT[4][0], ArrayCT[4][1])) {
+							found = 0;
+						}
 						for(int i=0;i<Room[pRoom[3]].adjacentRooms.length;i++) {
 							if(Room[pRoom[3]].adjacentRooms[i] == GetPawnLocation.getRoom()) {
 								found++;				
 							}
 						}	
 						if(found==0) {
+							ArrayCT[4][0] = previousXY[0];
+							ArrayCT[4][1] = previousXY[1];
 							System.out.println("Found Count: " + found);
 							MapGame.getChatRoom().append("Try Again!" + MapGame.getNextLine());	
 							clicks[3]=false;
@@ -254,6 +303,11 @@ public class PaintPanel extends JPanel {
 							repaint();
 							MapGame.getMoveJButton().setEnabled(false);
 							found = 0;
+						}
+						if(player[4].getTurnsLeft() >0) {
+							player[4].endTurn();
+							clicks[3] = true;
+							
 						}
 
 					}
@@ -273,15 +327,23 @@ public class PaintPanel extends JPanel {
 				public void mousePressed(MouseEvent e) {
 					// TODO Auto-generated method stub
 					if (clicks[4] == true) {
+						previousXY[0]= ArrayCT[5][0];
+						previousXY[1]= ArrayCT[5][1];
+						
 						ArrayCT[5][0] = e.getX() - 12;
 						ArrayCT[5][1] = e.getY() - 8;
 						GetPawnLocation.getXYCoordinates(ArrayCT[5][0], ArrayCT[5][1]);
+						if(GetPawnLocation.checkIfPlayerIsInMapBounds(ArrayCT[5][0], ArrayCT[5][1])) {
+							found = 0;
+						}
 						for(int i=0;i<Room[pRoom[4]].adjacentRooms.length;i++) {
 							if(Room[pRoom[4]].adjacentRooms[i] == GetPawnLocation.getRoom()) {
 								found++;				
 							}
 						}	
 						if(found==0) {
+							ArrayCT[5][0] = previousXY[0];
+							ArrayCT[5][1] = previousXY[1];
 							System.out.println("Found Count: " + found);
 							MapGame.getChatRoom().append("Try Again!" + MapGame.getNextLine());	
 							clicks[4]=false;
@@ -296,6 +358,11 @@ public class PaintPanel extends JPanel {
 							repaint();
 							MapGame.getMoveJButton().setEnabled(false);
 							found = 0;
+						}
+						if(player[5].getTurnsLeft() >0) {
+							player[5].endTurn();
+							clicks[4] = true;
+							
 						}
 
 					}
@@ -315,15 +382,24 @@ public class PaintPanel extends JPanel {
 				public void mousePressed(MouseEvent e) {
 					// TODO Auto-generated method stub
 					if (clicks[5] == true) {
+						previousXY[0]= ArrayCT[6][0];
+						previousXY[1]= ArrayCT[6][1];
+						
 						ArrayCT[6][0] = e.getX() - 12;
 						ArrayCT[6][1] = e.getY() - 8;
 						GetPawnLocation.getXYCoordinates(ArrayCT[6][0], ArrayCT[6][1]);
+						if(GetPawnLocation.checkIfPlayerIsInMapBounds(ArrayCT[6][0], ArrayCT[6][1])) {
+							found = 0;
+						}
 						for(int i=0;i<Room[pRoom[5]].adjacentRooms.length;i++) {
 							if(Room[pRoom[5]].adjacentRooms[i] == GetPawnLocation.getRoom()) {
 								found++;				
 							}
 						}	
 						if(found==0) {
+							
+							ArrayCT[6][0] = previousXY[0];
+							ArrayCT[6][1] = previousXY[1];
 							System.out.println("Found Count: " + found);
 							MapGame.getChatRoom().append("Try Again!" + MapGame.getNextLine());	
 							clicks[5]=false;
@@ -338,6 +414,11 @@ public class PaintPanel extends JPanel {
 							repaint();
 							MapGame.getMoveJButton().setEnabled(false);
 							found = 0;
+						}
+						if(player[6].getTurnsLeft() >0) {
+							player[6].endTurn();
+							clicks[5] = true;
+							
 						}
 					}
 
@@ -356,15 +437,23 @@ public class PaintPanel extends JPanel {
 				public void mousePressed(MouseEvent e) {
 					// TODO Auto-generated method stub
 					if (clicks[6] == true) {
+						previousXY[0]= ArrayCT[7][0];
+						previousXY[1]= ArrayCT[7][1];
+						
 						ArrayCT[7][0] = e.getX() - 12;
 						ArrayCT[7][1] = e.getY() - 8;
 						GetPawnLocation.getXYCoordinates(ArrayCT[7][0], ArrayCT[7][1]);
+						if(GetPawnLocation.checkIfPlayerIsInMapBounds(ArrayCT[7][0], ArrayCT[7][1])) {
+							found = 0;
+						}
 						for(int i=0;i<Room[pRoom[6]].adjacentRooms.length;i++) {
 							if(Room[pRoom[6]].adjacentRooms[i] == GetPawnLocation.getRoom()) {
 								found++;				
 							}
 						}	
 						if(found==0) {
+							ArrayCT[7][0] = previousXY[0];
+							ArrayCT[7][1] = previousXY[1];
 							System.out.println("Found Count: " + found);
 							MapGame.getChatRoom().append("Try Again!" + MapGame.getNextLine());	
 							clicks[6]=false;
@@ -380,6 +469,13 @@ public class PaintPanel extends JPanel {
 							MapGame.getMoveJButton().setEnabled(false);
 							found = 0;
 						}
+						if(player[7].getTurnsLeft() >0) {
+							player[7].endTurn();
+							clicks[6] = true;
+							
+						}
+						
+						
 					}
 
 				}

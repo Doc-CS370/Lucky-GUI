@@ -103,6 +103,7 @@ public class MapGame extends JFrame {
 			
 		}
 		setCardDeck(1);
+		player[1].addTurns(1);
 		PaintPanel.updateCardImg();
 		PaintPanel.updatePlayers(player);
 		PaintPanel.updateCards(Card);
@@ -265,10 +266,8 @@ public class MapGame extends JFrame {
 				PaintPanel.setBoolArrayStart(trueOrFalseClick);
 					//cout++;
 				trueOrFalseClick = PaintPanel.getBoolArrayBack();
-					
-					
+				player[countNum+1].endTurn();
 				repaint();
-				
 				move.setEnabled(false);
 			}
 
@@ -465,6 +464,7 @@ public class MapGame extends JFrame {
 				// TODO Auto-generated method stub
 				if (countNum < PaintPanel.playerNum-1) {
 					eventHandler.drawCard(Card, player, countNum+1);
+					player[countNum+1].addTurns(1);
 					countNum++;
 					chatRoom.append(player[countNum+1].getName() + ",your turn." + nL
 							+player[countNum+1].getName() + ",you are in the "
@@ -473,6 +473,7 @@ public class MapGame extends JFrame {
 					
 					setCardDeck(countNum+1);
 					PaintPanel.updateCardImg();
+					PaintPanel.updatePlayers(player);
 					repaint();
 					printAllPlayers();
 					move.setEnabled(true);
@@ -487,6 +488,8 @@ public class MapGame extends JFrame {
 					
 					countNum = 0;
 					setCardDeck(countNum + 1);
+					player[countNum+1].addTurns(1);
+					PaintPanel.updatePlayers(player);
 					
 					PaintPanel.updateCardImg();
 					printAllPlayers();
