@@ -22,8 +22,7 @@ public class MapGame extends JFrame {
 	private ImageIcon larr = new ImageIcon("C:\\Users\\lpare\\Desktop\\leftArrow.png");
 	private ImageIcon rarr = new ImageIcon("C:\\Users\\lpare\\Desktop\\rightArrow.png");
 	private boolean trueOrFalseClick[] = { false, false, false, false, false, false, false };
-	private int numberValue[] = { 2, 2, 2, 2, 2, 2};
-	private int cardValue[] = { 0, 1, 2, 3, 4, 5};
+	private static int cardValue[] = { 0, 1, 2, 3, 4, 5};
 	private static JButton move = new JButton("Move");
 	private static JButton draw = new JButton("Draw A Card");
 	private static JButton kill = new JButton("Kill");
@@ -211,13 +210,6 @@ public class MapGame extends JFrame {
 					cardValue[3] += 1;
 					cardValue[4] += 1;
 					cardValue[5] += 1;
-					numberValue[0] = numberValue[1];
-					numberValue[1] = numberValue[2];
-					numberValue[2] = numberValue[3];
-					numberValue[3] = numberValue[4];
-					numberValue[4] = numberValue[5];
-					numberValue[5] = numberValue[0];
-
 					for(int i = 0;i<6;i++) {
 						PaintPanel.setArray(i, PaintPanel.getFileLocat() + "Cards//"
 								+ PaintPanel.getP1Value(cardValue[i]) + ".png");
@@ -301,12 +293,14 @@ public class MapGame extends JFrame {
 					draw.setEnabled(false);
 					use.setEnabled(true);
 					Key = true;
+					MapGame.useTheCard = false;
 					
 					//eventHandler.killDoctorLucky(countNum+1,Card[GetCardLocation.currentCardNumber].getCardValue(), Card, player, Room);
 				
 				}else{
 					chatRoom.append("You can't use this card. Not a weapon card." + nL);
 					repaint();
+					MapGame.useTheCard = false;
 				}
 			}
 			
@@ -325,6 +319,7 @@ public class MapGame extends JFrame {
 						setCardDeck(countNum+1);
 						PaintPanel.updateCardImg();
 						use.setEnabled(false);
+						MapGame.useTheCard = false;
 						repaint();
 					}
 					else if(GetCardLocation.currentCardNumber >= 44 && GetCardLocation.currentCardNumber <= 63) {
@@ -334,6 +329,7 @@ public class MapGame extends JFrame {
 						setCardDeck(countNum+1);
 						PaintPanel.updateCardImg();
 						use.setEnabled(false);
+						MapGame.useTheCard = false;
 						repaint();
 					}
 					else if(GetCardLocation.currentCardNumber >= 64 && GetCardLocation.currentCardNumber <= 77) {
@@ -347,10 +343,12 @@ public class MapGame extends JFrame {
 						use.setEnabled(false);
 						System.out.println("Turns: " + player[1].getTurnsLeft());
 						move.setEnabled(true);
+						MapGame.useTheCard = false;
 						repaint();
 					}
 					else if(GetCardLocation.currentCardNumber >= 78 && GetCardLocation.currentCardNumber <= 97) {
 						ifYou.setVisible(true);	
+						MapGame.useTheCard = false;
 						
 					}
 				}
@@ -369,6 +367,7 @@ public class MapGame extends JFrame {
 								PaintPanel.updateCardImg();
 								repaint();
 								printAllPlayers();
+								MapGame.useTheCard = false;
 								if(eventHandler.killDoctorLucky(playerAttack+1, weaponPower, Card, player, Room) == false) {
 									chatRoom.append("You failed to Kill Doctor Lucky"+nL);
 									use.setEnabled(false);
@@ -392,6 +391,7 @@ public class MapGame extends JFrame {
 								
 								setCardDeck(countNum+1);
 								PaintPanel.updateCardImg();
+								MapGame.useTheCard = false;
 								repaint();
 								printAllPlayers();
 								move.setEnabled(false);
@@ -410,6 +410,7 @@ public class MapGame extends JFrame {
 								chatRoom.append(player[countNum+1].getName() + ",your turn." + nL);
 								setCardDeck(countNum+1);
 								PaintPanel.updateCardImg();
+								MapGame.useTheCard = false;
 								repaint();
 								printAllPlayers();
 								if(eventHandler.killDoctorLucky(playerAttack+1, weaponPower, Card, player, Room) == false) {
@@ -434,6 +435,7 @@ public class MapGame extends JFrame {
 							printAllPlayers();
 							chatRoom.append(player[countNum+1].getName() + ",your turn." + nL
 									+player[countNum+1].getName() + ",please use a failure card to counterattack." + nL);
+							MapGame.useTheCard = false;
 							repaint();
 							move.setEnabled(false);
 							kill.setEnabled(false);
@@ -546,6 +548,10 @@ public class MapGame extends JFrame {
 		PaintPanel.updateCards(Card);
 		PaintPanel.updateRooms(Room);
 
+	}
+	
+	public static int getCardValue(int n) {
+		return cardValue[n];
 	}
 
 	public static JTextArea getChatRoom() {

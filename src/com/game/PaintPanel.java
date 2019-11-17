@@ -490,17 +490,21 @@ public class PaintPanel extends JPanel {
 		// to click to
 		HighlightRooms.paintHighlights(g2d);
 		// Highlight Cards
-
-		HighlightCards.paintHighlights(g2d);
-		this.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				GetCardLocation.CheckForCardLocation(e.getX(), e.getY(), g2d);
-				repaint();
-				MapGame.useTheCard = true;
-			}
-
-		});
+		MapGame.useTheCard = true;
+		if(MapGame.useTheCard == true) {
+			HighlightCards.paintHighlights(g2d);
+			this.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					
+					GetCardLocation.CheckForCardLocation(e.getX(), e.getY(), g2d);
+					repaint();
+					MapGame.useTheCard = false;
+					
+				}
+	
+			});
+		}
 
 	}
 
