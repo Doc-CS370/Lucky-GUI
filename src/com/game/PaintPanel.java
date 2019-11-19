@@ -67,6 +67,7 @@ public class PaintPanel extends JPanel {
 		MapGame.getChatRoom().append("Player 1, you are in " + paint.Room[pRoom[0]].getRoomFlavor() + MapGame.getNextLine());
 	}
 
+	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;

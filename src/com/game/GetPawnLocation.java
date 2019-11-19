@@ -6,7 +6,7 @@ public class GetPawnLocation {
 	protected static int roomNum = 0;
 	
 	public static void getXYCoordinates(int x, int y) {
-		if(x>475 && x<740 && y>325 && y<375) {
+		if(x>475 && x<740 && y>325 && y<370) {
 			roomNum = 0;
 		}
 		else if(x>745 && x<870 && y>330 && y<390) {
@@ -68,14 +68,15 @@ public class GetPawnLocation {
 			roomNum = 19;
 		}
 		//Foyer
-		else if(x>540 && x<680 && y<390 && y>430) {
+		else if(x>540 && x<680 && y<380 && y>430) {
 			roomNum = 20;
 		}
-		//Wine Cellar
+		
+		//South West Hall(Next to Wine Cellar)
 		else if(x>265 && x<305 && y>310 && y<480) {
 			roomNum = 21;
 		}
-		//South West Hall(Next to Wine Cellar)
+		//Wine Cellar
 		else if(x>30 && x<245 && y>420 && y<480) {
 			roomNum = 22;
 		}
@@ -108,7 +109,7 @@ public class GetPawnLocation {
 			roomNum = 29;
 		}
 		//South east Hall
-		else if(x>900 && x<960 && x>310 && x<480) {
+		else if(x>880 && x<960 && x>310 && x<480) {
 			roomNum = 30;
 		}
 		//White Room
