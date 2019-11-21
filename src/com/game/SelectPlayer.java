@@ -34,7 +34,7 @@ public class SelectPlayer extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if(aOP.getSelectedItem() == "Three") {
-					setVisible(false);
+					dispose();
 					PaintPanel.playerNum = 3;
 					MapGame.numPlayers = 3;
 					MapGame m = new MapGame();
@@ -44,7 +44,7 @@ public class SelectPlayer extends JFrame{
 
 				}
 				else if(aOP.getSelectedItem() == "Four") {
-					setVisible(false);
+					dispose();
 					PaintPanel.playerNum = 4;
 					MapGame.numPlayers = 4;
 					MapGame m = new MapGame();
@@ -56,7 +56,7 @@ public class SelectPlayer extends JFrame{
 					
 				}
 				else if(aOP.getSelectedItem() == "Five") {
-					setVisible(false);
+					dispose();
 					PaintPanel.playerNum = 5;
 					MapGame.numPlayers = 5;
 					MapGame m = new MapGame();
@@ -67,7 +67,7 @@ public class SelectPlayer extends JFrame{
 					
 				}
 				else if(aOP.getSelectedItem() == "Six") {
-					setVisible(false);
+					dispose();
 					PaintPanel.playerNum = 6;
 					MapGame.numPlayers = 6;
 					MapGame m = new MapGame();
@@ -77,7 +77,7 @@ public class SelectPlayer extends JFrame{
 					
 				}
 				else {
-					setVisible(false);
+					dispose();
 					PaintPanel.playerNum = 7;
 					MapGame.numPlayers = 7;
 					MapGame m = new MapGame();

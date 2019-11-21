@@ -1,6 +1,5 @@
 package com.game;
 
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -44,7 +43,7 @@ public class MainMenu extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				setVisible(false);
+				dispose();
 				SelectPlayer m = new SelectPlayer();
 				m.setVisible(true);
 				
@@ -52,6 +51,7 @@ public class MainMenu extends JFrame{
 			}
 			
 		});
+		
 		mainMenu.add(strg);
 		mainMenu.add(multp);
 		mainMenu.add(opt);

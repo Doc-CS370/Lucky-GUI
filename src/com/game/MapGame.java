@@ -5,6 +5,8 @@ package com.game;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,7 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class MapGame extends JFrame {
+public class MapGame extends JFrame{
 
 	private ImageIcon larr = new ImageIcon("C:\\Users\\lpare\\Desktop\\leftArrow.png");
 	private ImageIcon rarr = new ImageIcon("C:\\Users\\lpare\\Desktop\\rightArrow.png");
@@ -35,6 +37,12 @@ public class MapGame extends JFrame {
 	private static JButton yes = new JButton("Yes");
 	private static JButton no = new JButton("No");
 	private static JLabel ques = new JLabel("Is it You?");
+	
+	private static JButton resume = new JButton("Resume");
+	private static JButton saveGame = new JButton("Save Game");
+	private static JButton exit = new JButton("Exit");
+	private static JButton startOver = new JButton("Start Over");
+	private static JButton mainMenu = new JButton("Main Menu");
 	private static String nL = "\n";
 	private JPanel mapG = new PaintPanel();
 	protected static int countNum = 0;
@@ -46,6 +54,7 @@ public class MapGame extends JFrame {
 	static int playerAttack = 0;
 	static int targetValue = 0;
 	static GlobalValues map = GlobalValues.GlobalValues();
+	static JInternalFrame pause = new JInternalFrame();
 	/**
 	 * 
 	 */
@@ -92,14 +101,100 @@ public class MapGame extends JFrame {
 		PaintPanel.updateCardImg();
 		repaint();
 		mapG.setLayout(null);
+		mapG.setFocusable(true);
 		JInternalFrame ifYou = new JInternalFrame();
 		ifYou.setSize(200,150);
 		ifYou.setVisible(false);
 		ifYou.setLayout(null);
 		ifYou.setLocation(650, 350);
+		
+		pause.setLayout(null);
+		pause.setSize(200,200);
+		pause.setLocation(650,350);
+		pause.setFocusable(true);
+		JInternalFrame endGame = new JInternalFrame();
+		endGame.setLayout(null);
+		endGame.setSize(200,200);
+		endGame.setLocation(650,350);
+		endGame.setFocusable(true);
+		startOver.setBounds(45,30,100,40);
+		mainMenu.setBounds(45,90,100,40);
+		resume.setBounds(45, 10, 100, 40);
+		saveGame.setBounds(45, 60, 100, 40);
+		exit.setBounds(45, 110, 100, 40);
 		yes.setBounds(30, 70, 60, 40);
 		no.setBounds(100, 70, 60, 40);
 		ques.setBounds(70, 20, 60, 40);
+		
+		mapG.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				boolean isPressed = true;
+				if(e.getKeyCode() == KeyEvent.VK_ENTER && isPressed == true) {
+					System.out.println("Key is Pressed");
+					pause.show();
+					isPressed = false;
+				}else {
+					System.out.println("Key is Pressed");
+					pause.show();
+					isPressed = false;
+				}
+			}
+			
+		});
+		startOver.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				dispose();
+				SelectPlayer y = new SelectPlayer();
+				y.setVisible(true);
+			}
+			
+		});
+		
+		mainMenu.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				dispose();
+				MainMenu u = new MainMenu();
+				u.setVisible(true);
+			}
+			
+		});
+		resume.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				pause.dispose();
+			}
+			
+		});
+		
+		saveGame.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		exit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				dispose();
+				MainMenu m = new MainMenu();
+				m.setVisible(true);
+			}
+			
+		});
 		yes.addActionListener(new ActionListener() {
 
 			@Override
@@ -401,6 +496,7 @@ public class MapGame extends JFrame {
 									
 								}else {
 									chatRoom.append("You win!"+nL);
+									endGame.setVisible(true);
 									use.setEnabled(false);
 									move.setEnabled(false);
 									kill.setEnabled(false);
@@ -503,6 +599,11 @@ public class MapGame extends JFrame {
 		ifYou.add(yes);
 		ifYou.add(no);
 		ifYou.add(ques);
+		pause.add(exit);
+		pause.add(resume);
+		pause.add(saveGame);
+		endGame.add(startOver);
+		endGame.add(mainMenu);
 		mapG.add(leftA);
 		mapG.add(rightA);
 		mapG.add(move);
@@ -512,7 +613,7 @@ public class MapGame extends JFrame {
 		mapG.add(chatText);
 		mapG.add(scroll);
 		mapG.add(ifYou);
-
+		mapG.add(pause);
 		add(mapG);
 		
 		setResizable(false);
