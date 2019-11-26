@@ -121,7 +121,9 @@ public class PaintPanel extends JPanel {
 								found++;				
 							}
 							
-						}	
+						}						
+						MapGame.getChatRoom().append("Player 1 Turns " + paint.Player[1].getTurnsLeft() + MapGame.getNextLine());
+
 						if(found==0) {
 							ArrayCT[1][0] = previousXY[0];
 							ArrayCT[1][1] = previousXY[1];
@@ -140,12 +142,13 @@ public class PaintPanel extends JPanel {
 							repaint();
 							MapGame.getMoveJButton().setEnabled(false);
 							found = 0;
-						}
-						if(paint.Player[1].getTurnsLeft() >0) {
 							paint.Player[1].endTurn();
-							clicks[0] = true;
-							
+							if(paint.Player[1].getTurnsLeft()>0) {
+								clicks[0] = true;
+								
+							}
 						}
+						
 					}
 				}
 				
@@ -190,12 +193,15 @@ public class PaintPanel extends JPanel {
 							repaint();
 							MapGame.getMoveJButton().setEnabled(false);
 							found = 0;
-						}
-						if(paint.Player[2].getTurnsLeft() >0) {
 							paint.Player[2].endTurn();
-							clicks[1] = true;
-							
+							if(paint.Player[2].getTurnsLeft() >0) {
+								
+								clicks[1] = true;
+								
+							}
 						}
+						
+						MapGame.getChatRoom().append("Player 2 Turns " + paint.Player[2].getTurnsLeft() + MapGame.getNextLine());
 					}
 
 				}
@@ -237,17 +243,19 @@ public class PaintPanel extends JPanel {
 							System.out.println("Found Count: " + found);
 							pRoom[2] = GetPawnLocation.getRoom();
 							paint.Player[3].setLocation(pRoom[2]);
-							MapGame.getChatRoom().append("Player 2, you are in " + paint.Room[pRoom[2]].getRoomFlavor() + MapGame.getNextLine());
+							MapGame.getChatRoom().append("Player 3, you are in " + paint.Room[pRoom[2]].getRoomFlavor() + MapGame.getNextLine());
 							repaint();
 							MapGame.getMoveJButton().setEnabled(false);
 							found = 0;
-						}
-						if(paint.Player[3].getTurnsLeft() >0) {
 							paint.Player[3].endTurn();
-							clicks[2] = true;
-							
+							if(paint.Player[3].getTurnsLeft() >0) {
+								
+								clicks[2] = true;
+								
+							}
 						}
-
+						
+						MapGame.getChatRoom().append("Player 3 Turns " + paint.Player[1].getTurnsLeft()+ MapGame.getNextLine());
 					}
 
 				}
@@ -293,16 +301,18 @@ public class PaintPanel extends JPanel {
 							System.out.println("Found Count: " + found);
 							pRoom[3] = GetPawnLocation.getRoom();
 							paint.Player[4].setLocation(pRoom[3]);
-							MapGame.getChatRoom().append("Player 2, you are in " + paint.Room[pRoom[3]].getRoomFlavor() + MapGame.getNextLine());
+							MapGame.getChatRoom().append("Player 4, you are in " + paint.Room[pRoom[3]].getRoomFlavor() + MapGame.getNextLine());
 							repaint();
 							MapGame.getMoveJButton().setEnabled(false);
 							found = 0;
-						}
-						if(paint.Player[4].getTurnsLeft() >0) {
 							paint.Player[4].endTurn();
-							clicks[3] = true;
-							
+							if(paint.Player[4].getTurnsLeft() >0) {
+								
+								clicks[3] = true;
+								
+							}
 						}
+						
 
 					}
 
@@ -348,16 +358,18 @@ public class PaintPanel extends JPanel {
 							System.out.println("Found Count: " + found);
 							pRoom[4] = GetPawnLocation.getRoom();
 							paint.Player[5].setLocation(pRoom[4]);
-							MapGame.getChatRoom().append("Player 2, you are in " + paint.Room[pRoom[4]].getRoomFlavor() + MapGame.getNextLine());
+							MapGame.getChatRoom().append("Player 5, you are in " + paint.Room[pRoom[4]].getRoomFlavor() + MapGame.getNextLine());
 							repaint();
 							MapGame.getMoveJButton().setEnabled(false);
 							found = 0;
-						}
-						if(paint.Player[5].getTurnsLeft() >0) {
 							paint.Player[5].endTurn();
-							clicks[4] = true;
-							
+							if(paint.Player[5].getTurnsLeft() >0) {
+								
+								clicks[4] = true;
+								
+							}
 						}
+						
 
 					}
 
@@ -404,16 +416,17 @@ public class PaintPanel extends JPanel {
 							System.out.println("Found Count: " + found);
 							pRoom[5] = GetPawnLocation.getRoom();
 							paint.Player[6].setLocation(pRoom[5]);
-							MapGame.getChatRoom().append("Player 2, you are in " + paint.Room[pRoom[5]].getRoomFlavor() + MapGame.getNextLine());
+							MapGame.getChatRoom().append("Player 6, you are in " + paint.Room[pRoom[5]].getRoomFlavor() + MapGame.getNextLine());
 							repaint();
 							MapGame.getMoveJButton().setEnabled(false);
 							found = 0;
-						}
-						if(paint.Player[6].getTurnsLeft() >0) {
 							paint.Player[6].endTurn();
-							clicks[5] = true;
-							
+							if(paint.Player[6].getTurnsLeft() >0) {
+								
+								clicks[5] = true;		
+							}
 						}
+					
 					}
 
 				}
@@ -458,16 +471,17 @@ public class PaintPanel extends JPanel {
 							System.out.println("Found Count: " + found);
 							pRoom[6] = GetPawnLocation.getRoom();
 							paint.Player[7].setLocation(pRoom[3]);
-							MapGame.getChatRoom().append("Player 2, you are in " + paint.Room[pRoom[6]].getRoomFlavor() + MapGame.getNextLine());
+							MapGame.getChatRoom().append("Player 7, you are in " + paint.Room[pRoom[6]].getRoomFlavor() + MapGame.getNextLine());
 							repaint();
 							MapGame.getMoveJButton().setEnabled(false);
 							found = 0;
-						}
-						if(paint.Player[7].getTurnsLeft() >0) {
 							paint.Player[7].endTurn();
-							clicks[6] = true;
+							if(paint.Player[7].getTurnsLeft() >0) {
+								clicks[6] = true;		
+							}
 							
 						}
+						
 						
 						
 					}
@@ -484,8 +498,7 @@ public class PaintPanel extends JPanel {
 		// to click to
 		HighlightRooms.paintHighlights(g2d);
 		// Highlight Cards
-		MapGame.useTheCard = true;
-		if(MapGame.useTheCard == true) {
+		if(GetCardLocation.isEnabled == true) {
 			HighlightCards.paintHighlights(g2d);
 			this.addMouseListener(new MouseAdapter() {
 				@Override
@@ -493,8 +506,6 @@ public class PaintPanel extends JPanel {
 					
 					GetCardLocation.CheckForCardLocation(e.getX(), e.getY(), g2d);
 					repaint();
-					MapGame.useTheCard = false;
-					
 				}
 	
 			});
