@@ -199,7 +199,7 @@ public class MapGame extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				SoundEffect.play(map.Card, GetCardLocation.currentCardNumber);
+				//SoundEffect.play(map.Card, GetCardLocation.currentCardNumber);
 				targetValue=countNum + 1;
 				eventHandler.useRoomCard(map.Room, map.Card, map.Player, GetCardLocation.currentCardNumber, targetValue,countNum+1);
 				chatRoom.append("You used card number " + map.Card[GetCardLocation.currentCardNumber].getCardNumber() 
@@ -221,7 +221,7 @@ public class MapGame extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				SoundEffect.play(map.Card, GetCardLocation.currentCardNumber);
+				//SoundEffect.play(map.Card, GetCardLocation.currentCardNumber);
 				targetValue = 0;
 				eventHandler.useRoomCard(map.Room, map.Card, map.Player, GetCardLocation.currentCardNumber,  targetValue,countNum+1);
 				chatRoom.append("You used card number " + map.Card[GetCardLocation.currentCardNumber].getCardNumber() 
@@ -285,7 +285,7 @@ public class MapGame extends JFrame{
 					cardValue[4] += 1;
 					cardValue[5] += 1;
 					for(int i = 0;i<6;i++) {
-						PaintPanel.setArray(i, PaintPanel.getFileLocat() + "Cards//"
+						PaintPanel.setArray(i, PaintPanel.getFileLocat() + "Cards/"
 								+ PaintPanel.getP1Value(cardValue[i]) + ".png");
 						PaintPanel.setCardValue(i, new ImageIcon(PaintPanel.getImageValue(i)).getImage());
 						GetCardLocation.updatePlayerHand(i);
@@ -311,7 +311,7 @@ public class MapGame extends JFrame{
 					cardValue[5] -= 1;
 					//for loop
 					for(int i = 0;i<6;i++) {
-						PaintPanel.setArray(i, PaintPanel.getFileLocat() + "Cards//"
+						PaintPanel.setArray(i, PaintPanel.getFileLocat() + "Cards/"
 								+ PaintPanel.getP1Value(cardValue[i]) + ".png");
 						PaintPanel.setCardValue(i, new ImageIcon(PaintPanel.getImageValue(i)).getImage());
 						
@@ -348,7 +348,7 @@ public class MapGame extends JFrame{
 						map.Player[countNum+1].getLocation() == map.Player[0].getLocation() && 
 						!witnessCheck.checkForWitness(map.Room, map.Player, countNum+1)) {
 					playerAttack = countNum;
-					SoundEffect.play(map.Card, GetCardLocation.currentCardNumber);
+					//SoundEffect.play(map.Card, GetCardLocation.currentCardNumber);
 					eventHandler.useWeaponCard(map.Player, countNum+1, map.Card, 
 							GetCardLocation.currentCardNumber, true);
 					chatRoom.append("You used the weapon card number " + 
@@ -398,7 +398,7 @@ public class MapGame extends JFrame{
 				// TODO Auto-generated method stub
 				if(Key == false) {
 					if(GetCardLocation.currentCardNumber >= 1 && GetCardLocation.currentCardNumber <= 43) {
-						SoundEffect.play(map.Card, GetCardLocation.currentCardNumber);
+						//SoundEffect.play(map.Card, GetCardLocation.currentCardNumber);
 						eventHandler.useFailureCard(map.Player,countNum+1, map.Card, GetCardLocation.currentCardNumber);
 						chatRoom.append("You used card number " + map.Card[GetCardLocation.currentCardNumber].getCardNumber() 
 										+",Failure Card." + nL +map.Card[GetCardLocation.currentCardNumber].getCardFlavor() + nL);
@@ -410,7 +410,7 @@ public class MapGame extends JFrame{
 						repaint();
 					}
 					else if(GetCardLocation.currentCardNumber >= 44 && GetCardLocation.currentCardNumber <= 63) {
-						SoundEffect.play(map.Card, GetCardLocation.currentCardNumber);
+						//SoundEffect.play(map.Card, GetCardLocation.currentCardNumber);
 						eventHandler.useWeaponCard(map.Player, countNum+1, map.Card, GetCardLocation.currentCardNumber, true);
 						chatRoom.append("You used card number " + map.Card[GetCardLocation.currentCardNumber].getCardNumber() 
 								+",Weapon Card." + nL +"The weapon is " + map.Card[GetCardLocation.currentCardNumber].getCardFlavor() + nL);
@@ -422,7 +422,7 @@ public class MapGame extends JFrame{
 						repaint();
 					}
 					else if(GetCardLocation.currentCardNumber >= 64 && GetCardLocation.currentCardNumber <= 77) {
-						SoundEffect.play(map.Card, GetCardLocation.currentCardNumber);
+						//SoundEffect.play(map.Card, GetCardLocation.currentCardNumber);
 						eventHandler.useMoveCard(map.Card, map.Player, GetCardLocation.currentCardNumber, countNum+1);
 						chatRoom.append("You used card number " + map.Card[GetCardLocation.currentCardNumber].getCardNumber() 
 								+",Move Card." + nL +map.Card[GetCardLocation.currentCardNumber].getCardFlavor() + nL + "You have " 
@@ -445,7 +445,7 @@ public class MapGame extends JFrame{
 				
 				if(Key == true) {
 					if(GetCardLocation.currentCardNumber >= 1 && GetCardLocation.currentCardNumber <= 43) {
-						SoundEffect.play(map.Card, GetCardLocation.currentCardNumber);
+						//SoundEffect.play(map.Card, GetCardLocation.currentCardNumber);
 						failureValue += eventHandler.useFailureCard(map.Player, countNum +1, map.Card, GetCardLocation.currentCardNumber);
 						chatRoom.append("You used Failure Card. Value: " + 
 										map.Card[GetCardLocation.currentCardNumber].getCardValue() + nL);

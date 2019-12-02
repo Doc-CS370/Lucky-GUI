@@ -17,14 +17,14 @@ public class PaintPanel extends JPanel {
 	/**
 	 * 
 	 */
-	private static String fileLocat = "C:\\Users\\lpare\\Desktop\\";
+	private static String fileLocat = "./images/";
 
 	private static final long serialVersionUID = 1L;
 	private static String p1value[] = {"0","0","0","0","0","0","0","0","0","0"};
-	private static String p1[] = { fileLocat + "Cards//" + p1value[0] + ".png",
-			fileLocat + "Cards//" + p1value[1] + ".png", fileLocat + "Cards//" + p1value[2] + ".png",
-			fileLocat + "Cards//" + p1value[3] + ".png", fileLocat + "Cards//" + p1value[4] + ".png",
-			fileLocat + "Cards//" + p1value[5] + ".png" };
+	private static String p1[] = { fileLocat + "cards/" + p1value[0] + ".png",
+			fileLocat + "Cards/" + p1value[1] + ".png", fileLocat + "Cards/" + p1value[2] + ".png",
+			fileLocat + "Cards/" + p1value[3] + ".png", fileLocat + "Cards/" + p1value[4] + ".png",
+			fileLocat + "Cards/" + p1value[5] + ".png" };
 	private static Image playerIcons[] = { new ImageIcon(fileLocat + "Dr.Lucky Chip.png").getImage(),
 			new ImageIcon(fileLocat + "Player1 Chip.png").getImage(),
 			new ImageIcon(fileLocat + "Player2 Chip.png").getImage(),
@@ -40,7 +40,7 @@ public class PaintPanel extends JPanel {
 	final private int pawnWidth = 35;
 	final private int pawnHeight = 35;
 
-	private Image backImg = new ImageIcon(fileLocat + "Map_with_special_rooms.png").getImage();
+	private Image backImg = new ImageIcon(fileLocat + "map.png").getImage();
 	// cardImg
 	private static Image cardImg[] = { new ImageIcon(p1[0]).getImage(), new ImageIcon(p1[1]).getImage(),
 			new ImageIcon(p1[2]).getImage(), new ImageIcon(p1[3]).getImage(), new ImageIcon(p1[4]).getImage(),
@@ -638,7 +638,7 @@ public class PaintPanel extends JPanel {
 
 	public static void updateCardImg() {
 		for(int i = 0;i<6;i++) {
-			PaintPanel.setArray(i, PaintPanel.getFileLocat() + "Cards//" + PaintPanel.getP1Value(i) + ".png");
+			PaintPanel.setArray(i, PaintPanel.getFileLocat() + "Cards/" + PaintPanel.getP1Value(i) + ".png");
 			PaintPanel.setCardValue(i, new ImageIcon(PaintPanel.getImageValue(i)).getImage());
 		}
 		

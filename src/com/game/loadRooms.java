@@ -9,7 +9,7 @@ public class loadRooms {
 
 	public static room[] compileMansion() throws FileNotFoundException {
 		room[] Room = new room[32];
-		Scanner mapIn = new Scanner(new File("C:\\\\Users\\\\lpare\\\\Desktop\\\\rooms.txt"));
+		Scanner mapIn = new Scanner(new File("./assets/rooms.txt"));
 
 		for (int i = 0; mapIn.hasNext(); i++) {
 			Room[i] = new room();
