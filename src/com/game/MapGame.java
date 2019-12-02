@@ -21,8 +21,8 @@ import javax.swing.JTextField;
 
 public class MapGame extends JFrame{
 
-	private ImageIcon larr = new ImageIcon("C:\\Users\\lpare\\Desktop\\leftArrow.png");
-	private ImageIcon rarr = new ImageIcon("C:\\Users\\lpare\\Desktop\\rightArrow.png");
+	private ImageIcon larr = new ImageIcon("./images/leftArrow.png");
+	private ImageIcon rarr = new ImageIcon("./images/rightArrow.png");
 	private boolean trueOrFalseClick[] = { false, false, false, false, false, false, false };
 	private static int cardValue[] = { 0, 1, 2, 3, 4, 5};
 	private static JButton move = new JButton("Move");
