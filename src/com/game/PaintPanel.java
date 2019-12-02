@@ -22,9 +22,9 @@ public class PaintPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private static String p1value[] = {"0","0","0","0","0","0","0","0","0","0"};
 	private static String p1[] = { fileLocat + "cards/" + p1value[0] + ".png",
-			fileLocat + "Cards/" + p1value[1] + ".png", fileLocat + "Cards/" + p1value[2] + ".png",
-			fileLocat + "Cards/" + p1value[3] + ".png", fileLocat + "Cards/" + p1value[4] + ".png",
-			fileLocat + "Cards/" + p1value[5] + ".png" };
+			fileLocat + "cards/" + p1value[1] + ".png", fileLocat + "cards/" + p1value[2] + ".png",
+			fileLocat + "cards/" + p1value[3] + ".png", fileLocat + "cards/" + p1value[4] + ".png",
+			fileLocat + "cards/" + p1value[5] + ".png" };
 	private static Image playerIcons[] = { new ImageIcon(fileLocat + "Dr.Lucky Chip.png").getImage(),
 			new ImageIcon(fileLocat + "Player1 Chip.png").getImage(),
 			new ImageIcon(fileLocat + "Player2 Chip.png").getImage(),
@@ -638,7 +638,7 @@ public class PaintPanel extends JPanel {
 
 	public static void updateCardImg() {
 		for(int i = 0;i<6;i++) {
-			PaintPanel.setArray(i, PaintPanel.getFileLocat() + "Cards/" + PaintPanel.getP1Value(i) + ".png");
+			PaintPanel.setArray(i, PaintPanel.getFileLocat() + "cards/" + PaintPanel.getP1Value(i) + ".png");
 			PaintPanel.setCardValue(i, new ImageIcon(PaintPanel.getImageValue(i)).getImage());
 		}
 		
