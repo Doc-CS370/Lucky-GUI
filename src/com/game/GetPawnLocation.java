@@ -68,7 +68,7 @@ public class GetPawnLocation {
 			roomNum = 19;
 		}
 		//Foyer
-		else if(x>540 && x<680 && y<380 && y>430) {
+		else if(x>540 && x<680 && y>380 && y<430) {
 			roomNum = 20;
 		}
 		
@@ -105,15 +105,15 @@ public class GetPawnLocation {
 			roomNum = 28;
 		}
 		//Mid east hall
-		else if(x>755 && x<1185 && y>250 && y <310) {
+		else if(x>755 && x<1185 && y>250 && y <300) {
 			roomNum = 29;
 		}
 		//South east Hall
-		else if(x>880 && x<960 && x>310 && x<480) {
+		else if(x>900 && x<940 && y>310 && y<480) {
 			roomNum = 30;
 		}
 		//White Room
-		else if(x>970 && x<1185 && x>410 && x<490) {
+		else if(x>970 && x<1185 && y>410 && y<490) {
 			roomNum = 31;
 		}
 		
