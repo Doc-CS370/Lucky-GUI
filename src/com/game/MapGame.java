@@ -2,6 +2,9 @@ package com.game;
 
 
 
+import com.game.client.ChatRunnable;
+import com.game.client.DrLuckyClient;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -54,6 +57,7 @@ public class MapGame extends JFrame{
 	static int playerAttack = 0;
 	static int targetValue = 0;
 	static GlobalValues map = GlobalValues.GlobalValues();
+	static player thisPlayer;
 	
 	/**
 	 * 
@@ -65,11 +69,11 @@ public class MapGame extends JFrame{
 
 		////////
 		// Set up players
-		System.out.println("The number players selected are " + numPlayers);
+		//System.out.println("The number players selected are " + numPlayers);
 		map.Player= new player[8];
 		
 		
-		for (int i = 0; i < 8; i++) {
+		/**for (int i = 0; i < 8; i++) {
 			if(i == 0) {
 				map.Player[0] = new player();
 				map.Player[0].setAlive();
@@ -95,7 +99,7 @@ public class MapGame extends JFrame{
 				map.Player[i] = new player();	
 			}
 			
-		}
+		}**/
 		map.Player[1].addTurns(1);
 		setCardDeck(1);
 		PaintPanel.updateCardImg();
@@ -248,17 +252,18 @@ public class MapGame extends JFrame{
 		chatRoom.setVisible(true);
 		chatText.setBounds(1230, 580, 270, 30);
 		chatText.setVisible(true);
+		//start the chat client
+		ChatRunnable chatRunnable = new ChatRunnable(chatRoom, map);
+		Thread chat = new Thread(chatRunnable);
+		chat.start();
 		chatText.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				String txt = chatText.getText();
-				chatRoom.append(txt + nL);
-				chatText.selectAll();
-
+				DrLuckyClient.currentMessage = chatText.getText();
 				chatRoom.setCaretPosition(chatRoom.getDocument().getLength());
-
+				chatText.setText("");
 			}
 
 		});
@@ -561,7 +566,7 @@ public class MapGame extends JFrame{
 				if (countNum < PaintPanel.playerNum-1) {
 					countNum++;
 					printAllPlayers();
-					eventHandler.drawCard(map.Card, map.Player, countNum+1);
+					eventHandler.drawCard(map.Card, thisPlayer);
 					map.Player[countNum+1].addTurns(1);
 					
 					chatRoom.append(map.Player[countNum+1].getName() + ",your turn." + nL
@@ -583,7 +588,7 @@ public class MapGame extends JFrame{
 					
 					
 					//cout = 0;
-					eventHandler.drawCard(map.Card, map.Player, countNum+1);
+					eventHandler.drawCard(map.Card, thisPlayer);
 					printAllPlayers();
 					countNum = 0;
 					setCardDeck(countNum + 1);

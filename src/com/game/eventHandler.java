@@ -79,21 +79,7 @@ public class eventHandler {
         return failure;
     }
  
-    public static void drawCard(card[] Card, player[] player, int playerNum) {
-    	
-
-        /*
-         * int hasDrawn = 0;
-         *
-         * while (hasDrawn == 0) { int randInt = (int) (Math.random() * 97); if
-         * (Card[randInt].getCardStatus() == 0) { player[playerNum].addCard(randInt);
-         * Card[randInt].setCardStatus(1); hasDrawn++;
-         *
-         *
-         * }
-         *
-         * }
-         */
+    public static void drawCard(card[] Card, player thisPlayer) {
  
         // Create undrawn array
         // Supports a maximum of 200 cards
@@ -111,12 +97,6 @@ public class eventHandler {
             }
  
         }
- 
-       
-       
-       
-       
-       
         if (cnt == 0) {
             for (int i = 1; i < Card.length; i++) {
                 if(Card[i].getCardStatus() == 2) {
@@ -133,7 +113,7 @@ public class eventHandler {
         } else {
  
             int randInt = (int) (Math.random() * cnt);
-            player[playerNum].addCard(eligibleCards[randInt]);
+            thisPlayer.addCard(eligibleCards[randInt]);
             Card[eligibleCards[randInt]].setCardStatus(1);
  
         }

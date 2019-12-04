@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 public class GlobalValues {
 	private static GlobalValues gV = null;
 	
-	public player[] Player;
+	public player[] Player; //Should have the locations of other players with #0 being lucky himself
 	public card[] Card;
 	public room[] Room;
 	

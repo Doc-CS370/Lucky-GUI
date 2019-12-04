@@ -62,9 +62,9 @@ public class PaintPanel extends JPanel {
 	PaintPanel() {
 		setDoctorLoad();
 		setPlayerLoad();
-		MapGame.getChatRoom().append("Welcome to Doctor Lucky!" + MapGame.getNextLine());
-		MapGame.getChatRoom().append("Player 1, your turn." + MapGame.getNextLine());
-		MapGame.getChatRoom().append("Player 1, you are in " + paint.Room[pRoom[0]].getRoomFlavor() + MapGame.getNextLine());
+		//MapGame.getChatRoom().append("Welcome to Doctor Lucky!" + MapGame.getNextLine());
+		//MapGame.getChatRoom().append("Player 1, your turn." + MapGame.getNextLine());
+		//MapGame.getChatRoom().append("Player 1, you are in " + paint.Room[pRoom[0]].getRoomFlavor() + MapGame.getNextLine());
 	}
 
 	@Override
