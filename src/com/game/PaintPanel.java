@@ -17,22 +17,22 @@ public class PaintPanel extends JPanel {
 	/**
 	 * 
 	 */
-	private static String fileLocat = "./images/";
+	private static String fileLocat = "images\\";
 
 	private static final long serialVersionUID = 1L;
 	private static String p1value[] = {"0","0","0","0","0","0","0","0","0","0"};
-	private static String p1[] = { fileLocat + "cards/" + p1value[0] + ".png",
-			fileLocat + "cards/" + p1value[1] + ".png", fileLocat + "cards/" + p1value[2] + ".png",
-			fileLocat + "cards/" + p1value[3] + ".png", fileLocat + "cards/" + p1value[4] + ".png",
-			fileLocat + "cards/" + p1value[5] + ".png" };
+	private static String p1[] = { fileLocat + "cards//" + p1value[0] + ".png",
+			fileLocat + "cards//" + p1value[1] + ".png", fileLocat + "cards//" + p1value[2] + ".png",
+			fileLocat + "cards//" + p1value[3] + ".png", fileLocat + "cards//" + p1value[4] + ".png",
+			fileLocat + "cards//" + p1value[5] + ".png" };
 	private static Image playerIcons[] = { new ImageIcon(fileLocat + "Dr.Lucky Chip.png").getImage(),
 			new ImageIcon(fileLocat + "Player1 Chip.png").getImage(),
 			new ImageIcon(fileLocat + "Player2 Chip.png").getImage(),
 			new ImageIcon(fileLocat + "Player3 Chip.png").getImage(),
 			new ImageIcon(fileLocat + "Player4 Chip.png").getImage(),
 			new ImageIcon(fileLocat + "Player5 Chip.png").getImage(),
-			new ImageIcon(fileLocat + "Player6 Chip.png").getImage(),
-			new ImageIcon(fileLocat + "Player7 Chip.png").getImage(), };
+			new ImageIcon(fileLocat + "Player 6 Chip.png").getImage(),
+			new ImageIcon(fileLocat + "Player 7 Chip.png").getImage(), };
 	// x and y coordinates for each player
 	private static int ArrayCT[][] = { { 1075, 530 }, { 1000, 30 }, { 1150, 30}, { 1000, 200 }, { 1150, 200 },
 			{ 1000, 370 }, { 1150, 370,0,0 }, { 1330, 200 } };
@@ -40,7 +40,7 @@ public class PaintPanel extends JPanel {
 	final private int pawnWidth = 35;
 	final private int pawnHeight = 35;
 
-	private Image backImg = new ImageIcon(fileLocat + "map.png").getImage();
+	private Image backImg = new ImageIcon(fileLocat + "Map_with_special_rooms.png").getImage();
 	// cardImg
 	private static Image cardImg[] = { new ImageIcon(p1[0]).getImage(), new ImageIcon(p1[1]).getImage(),
 			new ImageIcon(p1[2]).getImage(), new ImageIcon(p1[3]).getImage(), new ImageIcon(p1[4]).getImage(),
@@ -60,6 +60,7 @@ public class PaintPanel extends JPanel {
 	static GlobalValues paint = GlobalValues.GlobalValues();
 
 	PaintPanel() {
+		
 		setDoctorLoad();
 		setPlayerLoad();
 		MapGame.getChatRoom().append("Welcome to Doctor Lucky!" + MapGame.getNextLine());
@@ -126,7 +127,6 @@ public class PaintPanel extends JPanel {
 							}
 							
 						}						
-						MapGame.getChatRoom().append("Player 1 Turns " + paint.Player[1].getTurnsLeft() + MapGame.getNextLine());
 
 						if(found==0) {
 							ArrayCT[1][0] = previousXY[0];
@@ -142,7 +142,7 @@ public class PaintPanel extends JPanel {
 							System.out.println("Found Count: " + found);
 							setPRoom(0,GetPawnLocation.getRoom());
 							System.out.println("Player Room: " + pRoom[0]);
-							paint.Player[1].setLocation(pRoom[0]);
+							eventHandler.move(paint.Player, paint.Room, pRoom[0], 1);
 							MapGame.getChatRoom().append("Player 1, you are in " + paint.Room[paint.Player[1].getLocation()].getRoomFlavor() + MapGame.getNextLine());
 							repaint();
 							MapGame.getMoveJButton().setEnabled(false);
@@ -193,7 +193,7 @@ public class PaintPanel extends JPanel {
 							clicks[1] = false;
 							System.out.println("Found Count: " + found);
 							setPRoom(1,GetPawnLocation.getRoom());
-							paint.Player[2].setLocation(pRoom[1]);
+							eventHandler.move(paint.Player, paint.Room, pRoom[1], 2);
 							MapGame.getChatRoom().append("Player 2, you are in " + paint.Room[paint.Player[2].getLocation()].getRoomFlavor() + MapGame.getNextLine());
 							repaint();
 							MapGame.getMoveJButton().setEnabled(false);
@@ -205,8 +205,6 @@ public class PaintPanel extends JPanel {
 								
 							}
 						}
-						
-						MapGame.getChatRoom().append("Player 2 Turns " + paint.Player[2].getTurnsLeft() + MapGame.getNextLine());
 					}
 
 				}
@@ -247,7 +245,7 @@ public class PaintPanel extends JPanel {
 							clicks[2] = false;
 							System.out.println("Found Count: " + found);
 							setPRoom(2,GetPawnLocation.getRoom());
-							paint.Player[3].setLocation(pRoom[2]);
+							eventHandler.move(paint.Player, paint.Room, pRoom[2], 3);
 							MapGame.getChatRoom().append("Player 3, you are in " + paint.Room[paint.Player[3].getLocation()].getRoomFlavor() + MapGame.getNextLine());
 							repaint();
 							MapGame.getMoveJButton().setEnabled(false);
@@ -260,7 +258,6 @@ public class PaintPanel extends JPanel {
 							}
 						}
 						
-						MapGame.getChatRoom().append("Player 3 Turns " + paint.Player[1].getTurnsLeft()+ MapGame.getNextLine());
 					}
 
 				}
@@ -305,7 +302,7 @@ public class PaintPanel extends JPanel {
 							clicks[3] = false;
 							System.out.println("Found Count: " + found);
 							setPRoom(3,GetPawnLocation.getRoom());
-							paint.Player[4].setLocation(pRoom[3]);
+							eventHandler.move(paint.Player, paint.Room, pRoom[3], 4);
 							MapGame.getChatRoom().append("Player 4, you are in " + paint.Room[paint.Player[4].getLocation()].getRoomFlavor() + MapGame.getNextLine());
 							repaint();
 							MapGame.getMoveJButton().setEnabled(false);
@@ -362,7 +359,7 @@ public class PaintPanel extends JPanel {
 							clicks[4] = false;
 							System.out.println("Found Count: " + found);
 							setPRoom(0,GetPawnLocation.getRoom());
-							paint.Player[5].setLocation(pRoom[4]);
+							eventHandler.move(paint.Player, paint.Room, pRoom[4], 5);
 							MapGame.getChatRoom().append("Player 5, you are in " + paint.Room[paint.Player[5].getLocation()].getRoomFlavor() + MapGame.getNextLine());
 							repaint();
 							MapGame.getMoveJButton().setEnabled(false);
@@ -420,7 +417,7 @@ public class PaintPanel extends JPanel {
 							clicks[5] = false;
 							System.out.println("Found Count: " + found);
 							setPRoom(5,GetPawnLocation.getRoom());
-							paint.Player[6].setLocation(pRoom[5]);
+							eventHandler.move(paint.Player, paint.Room, pRoom[5], 6);
 							MapGame.getChatRoom().append("Player 6, you are in " + paint.Room[paint.Player[6].getLocation()].getRoomFlavor() + MapGame.getNextLine());
 							repaint();
 							MapGame.getMoveJButton().setEnabled(false);
@@ -475,7 +472,7 @@ public class PaintPanel extends JPanel {
 							clicks[6] = false;
 							System.out.println("Found Count: " + found);
 							setPRoom(6,GetPawnLocation.getRoom());
-							paint.Player[7].setLocation(pRoom[3]);
+							eventHandler.move(paint.Player, paint.Room, pRoom[6], 7);
 							MapGame.getChatRoom().append("Player 7, you are in " + paint.Room[paint.Player[7].getLocation()].getRoomFlavor() + MapGame.getNextLine());
 							repaint();
 							MapGame.getMoveJButton().setEnabled(false);
@@ -503,18 +500,21 @@ public class PaintPanel extends JPanel {
 		// to click to
 		HighlightRooms.paintHighlights(g2d);
 		// Highlight Cards
-		if(GetCardLocation.isEnabled == true) {
-			HighlightCards.paintHighlights(g2d);
+		
+		
+		HighlightCards.paintHighlights(g2d);
+		if(GetCardLocation.isEnabled = true) {
 			this.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					
 					GetCardLocation.CheckForCardLocation(e.getX(), e.getY(), g2d);
 					repaint();
+					
 				}
-	
+		
 			});
 		}
+			
 
 	}
 
@@ -524,9 +524,9 @@ public class PaintPanel extends JPanel {
 
 	// Updates a specific
 	public static void resetPlayerRoom(int num) {
-		pxy.getXPawnLocation(pRoom[num]);
-		ArrayCT[num + 1][0] = pxy.getXP();
-		ArrayCT[num + 1][1] = pxy.getYP();
+		SetPawnLocation.getXPawnLocation(pRoom[num]);
+		ArrayCT[num + 1][0] = SetPawnLocation.getXP();
+		ArrayCT[num + 1][1] = SetPawnLocation.getYP();
 	}
 
 	public static void setDRoom(int Room) {
@@ -536,25 +536,18 @@ public class PaintPanel extends JPanel {
 	// Loads the player location
 	public static void setPlayerLoad() {
 		for (int i = 1; i < 7; i++) {
-			pxy.getXPawnLocation(pRoom[i - 1]);
-			ArrayCT[i][0] = pxy.getXP();
-			ArrayCT[i][1] = pxy.getYP();
-			setArray(i);
+			SetPawnLocation.getXPawnLocation(pRoom[i - 1]);
+			ArrayCT[i][0] = SetPawnLocation.getXP();
+			ArrayCT[i][1] = SetPawnLocation.getYP();
 
 		}
 	}
 
 	// Load the Doctor Lucky's location
 	public static void setDoctorLoad() {
-		pxy.getXPawnLocation(dRoom);
-		ArrayCT[0][0] = pxy.getXP();
-		ArrayCT[0][1] = pxy.getYP();
-	}
-
-	// Set the player x and y coordinates when the player clicks to a specific
-	// coordinate
-	public static void setArray(int i) {
-
+		SetPawnLocation.getXPawnLocation(dRoom);
+		ArrayCT[0][0] = SetPawnLocation.getXP();
+		ArrayCT[0][1] = SetPawnLocation.getYP();
 	}
 
 	// Sets the cards for the players
@@ -638,7 +631,7 @@ public class PaintPanel extends JPanel {
 
 	public static void updateCardImg() {
 		for(int i = 0;i<6;i++) {
-			PaintPanel.setArray(i, PaintPanel.getFileLocat() + "cards/" + PaintPanel.getP1Value(i) + ".png");
+			PaintPanel.setArray(i, PaintPanel.getFileLocat() + "cards//" + PaintPanel.getP1Value(i) + ".png");
 			PaintPanel.setCardValue(i, new ImageIcon(PaintPanel.getImageValue(i)).getImage());
 		}
 		

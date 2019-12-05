@@ -62,7 +62,10 @@ public class HighlightCards {
 		checkCards[value] = true;
 	}
 	
-	public static void getCheckCards() {
+	public static void setCheckCardsFalse() {
+		for(int i = 0; i<checkCards.length;i++) {
+			checkCards[i] = false;
+		}
 		
 	}
 	

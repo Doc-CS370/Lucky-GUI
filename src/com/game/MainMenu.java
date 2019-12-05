@@ -52,13 +52,23 @@ public class MainMenu extends JFrame{
 			
 		});
 		
+		exit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				dispose();
+			}
+			
+		});
+		
 		mainMenu.add(strg);
 		mainMenu.add(multp);
 		mainMenu.add(opt);
 		mainMenu.add(exit);
 		mainMenu.add(mt);
 		try {
-			File sound = new File("C:\\Users\\lpare\\Desktop\\Simple.wav");
+			File sound = new File("Sounds\\Simple.wav");
 			AudioInputStream sis = AudioSystem.getAudioInputStream(sound);
 			Clip clip = AudioSystem.getClip();
 			clip.open(sis);

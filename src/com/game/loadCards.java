@@ -9,7 +9,7 @@ public class loadCards {
 
 	public static card[] compileDeck() throws FileNotFoundException {
 		card[] Card = new card[98];
-		Scanner cardIn = new Scanner(new File("./assets/cards.txt"));
+		Scanner cardIn = new Scanner(new File("assets\\cards.txt"));
 
 		Card[1] = new card();
         Card[1].setCardNumber(0);
